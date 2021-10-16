@@ -97,7 +97,7 @@ const Main = (props) => {
         clearState={clearState}
         state={state}
       />
-      {/* <FormCompleted state={state} /> */}
+      <FormCompleted state={state} />
     </>
   );
 };
