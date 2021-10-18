@@ -11,15 +11,15 @@ import { inputsValidate, errorsChecking } from '../../utils/valdation';
 import React from 'react';
 
 const Main = (props) => {
-  const [state, setState] = useState(formInitialState);
+  const [formState, setFormState] = useState(formInitialState);
   const getValuesFromForm = ({ target: { value, name } }) =>
-    setState((prevState) => ({ ...prevState, [name]: value }));
+    setFormState((prevState) => ({ ...prevState, [name]: value }));
 
   const formValidate = () => {
-    inputsValidate(state, formErrors);
+    inputsValidate(formState, formErrors);
 
     if (!errorsChecking(formErrors)) {
-      setState((prevState) => ({
+      setFormState((prevState) => ({
         ...prevState,
         nameError: formErrors.name,
         lastNameError: formErrors.lastName,
@@ -31,14 +31,14 @@ const Main = (props) => {
         lastProjectError: formErrors.lastProject,
       }));
     } else {
-      props.renameHeaderTitle(state.name, state.lastName);
-      setState((prevState) => ({ ...prevState, formIsValid: true }));
+      props.renameHeaderTitle(formState.name, formState.lastName);
+      setFormState((prevState) => ({ ...prevState, formIsValid: true }));
     }
   };
 
-  const clearState = (event) => {
+  const clearformState = (event) => {
     event.preventDefault();
-    setState(formInitialState);
+    setFormState(formInitialState);
   };
 
   return (
@@ -46,10 +46,10 @@ const Main = (props) => {
       <Form
         getValuesFromForm={getValuesFromForm}
         formValidate={formValidate}
-        clearState={clearState}
-        state={state}
+        clearformState={clearformState}
+        formState={formState}
       />
-      <FormCompleted state={state} />
+      <FormCompleted formState={formState} />
     </>
   );
 };

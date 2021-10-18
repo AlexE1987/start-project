@@ -6,9 +6,10 @@ const Form = (props) => {
     event.preventDefault();
     props.formValidate();
   };
+
   return (
     <form
-      className={props.state.formIsValid ? 'hide' : 'form__wrapper'}
+      className={props.formState.formIsValid ? 'hide' : 'form__wrapper'}
       onSubmit={handleFormSubmit}>
       <label className="label" htmlFor="">
         Имя
@@ -16,10 +17,10 @@ const Form = (props) => {
           className="input"
           name="name"
           type="text"
-          value={props.state.name}
+          value={props.formState.name}
           onChange={props.getValuesFromForm}
         />
-        {<p className="error">{props.state.nameError}</p>}
+        {<p className="error">{props.formState.nameError}</p>}
       </label>
 
       <label className="label" htmlFor="">
@@ -28,10 +29,10 @@ const Form = (props) => {
           className="input"
           name="lastName"
           type="text"
-          value={props.state.lastName}
+          value={props.formState.lastName}
           onChange={props.getValuesFromForm}
         />
-        {<p className="error">{props.state.lastNameError}</p>}
+        {<p className="error">{props.formState.lastNameError}</p>}
       </label>
 
       <label className="label" htmlFor="">
@@ -40,10 +41,10 @@ const Form = (props) => {
           className="input"
           name="dateOfBirth"
           type="date"
-          value={props.state.dateOfBirth}
+          value={props.formState.dateOfBirth}
           onChange={props.getValuesFromForm}
         />
-        {<p className="error">{props.state.dateOfBirthError}</p>}
+        {<p className="error">{props.formState.dateOfBirthError}</p>}
       </label>
 
       <label className="label" htmlFor="">
@@ -53,10 +54,10 @@ const Form = (props) => {
           type="tel"
           name="phone"
           placeholder="7-7777-77-77"
-          value={props.state.phone}
+          value={props.formState.phone}
           onChange={props.getValuesFromForm}
         />
-        {<p className="error">{props.state.phoneError}</p>}
+        {<p className="error">{props.formState.phoneError}</p>}
       </label>
 
       <label className="label" htmlFor="">
@@ -66,10 +67,10 @@ const Form = (props) => {
           name="site"
           type="text"
           placeholder="https:// "
-          value={props.state.site}
+          value={props.formState.site}
           onChange={props.getValuesFromForm}
         />
-        {<p className="error">{props.state.siteError}</p>}
+        {<p className="error">{props.formState.siteError}</p>}
       </label>
 
       <label className="label" htmlFor="">
@@ -79,10 +80,12 @@ const Form = (props) => {
           name="about"
           cols="30"
           rows="2"
-          value={props.state.about}
+          value={props.formState.about}
           onChange={props.getValuesFromForm}></textarea>
-        <div className="symbols-counter">Доступно символов: {600 - props.state.about.length}</div>
-        {<p className="error">{props.state.aboutError}</p>}
+        <div className="symbols-counter">
+          Доступно символов: {600 - props.formState.about.length}
+        </div>
+        {<p className="error">{props.formState.aboutError}</p>}
       </label>
 
       <label className="label" htmlFor="">
@@ -92,12 +95,12 @@ const Form = (props) => {
           name="stackTechnology"
           cols="30"
           rows="2"
-          value={props.state.stackTechnology}
+          value={props.formState.stackTechnology}
           onChange={props.getValuesFromForm}></textarea>
         <div className="symbols-counter">
-          Доступно символов: {600 - props.state.stackTechnology.length}
+          Доступно символов: {600 - props.formState.stackTechnology.length}
         </div>
-        {<p className="error">{props.state.stackTechnologyError}</p>}
+        {<p className="error">{props.formState.stackTechnologyError}</p>}
       </label>
 
       <label className="label" htmlFor="">
@@ -108,17 +111,17 @@ const Form = (props) => {
           id=""
           cols="30"
           rows="2"
-          value={props.state.lastProject}
+          value={props.formState.lastProject}
           onChange={props.getValuesFromForm}></textarea>
         <div className="symbols-counter">
-          Доступно символов: {600 - props.state.lastProject.length}
+          Доступно символов: {600 - props.formState.lastProject.length}
         </div>
-        {<p className="error">{props.state.lastProjectError}</p>}
+        {<p className="error">{props.formState.lastProjectError}</p>}
       </label>
 
       <div className="btn__container">
         <button className="btn">Сохранить</button>
-        <button className="btn" onClick={props.clearState}>
+        <button className="btn" onClick={props.clearformState}>
           Отмена
         </button>
       </div>
