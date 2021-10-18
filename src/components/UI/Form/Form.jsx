@@ -4,7 +4,7 @@ import './Form.css';
 const Form = (props) => {
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    props.inputsValidate();
+    props.formValidate();
   };
   return (
     <form
