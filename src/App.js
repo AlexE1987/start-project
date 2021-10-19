@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import About from './components/pages/About/About';
 import Home from './components/pages/Home/Home';
 // import Product from './components/pages/Product';
@@ -9,7 +9,7 @@ import Home from './components/pages/Home/Home';
 function App() {
   return (
     <Router>
-      <Header></Header>
+      <Header />
       <Switch>
         <Route path="/about" component={About} />
         {/* <Route path="/product" component={Product} /> */}
