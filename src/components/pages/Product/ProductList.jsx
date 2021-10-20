@@ -1,37 +1,38 @@
 import React, { useState, useEffect } from 'react';
-
-import Product from './Product';
+import { Link } from 'react-router-dom';
 
 const ProductList = () => {
-  const [loading, setLoading] = useState(false);
-  const [posts, setPosts] = useState([]);
+  const [isLoading, setISLoading] = useState(false);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const loadPost = async () => {
-      setLoading(true);
-      let product = await fetch('http://localhost:3000/product')
+    const loadProducts = async () => {
+      setISLoading(true);
+      let products = await fetch('http://localhost:3000/products')
         .then((response) => response.json())
-        .then((json) => json);
+        .then((data) => data);
 
-      setPosts(product);
-      setLoading(false);
+      setProducts(products);
+      setISLoading(false);
     };
 
-    loadPost();
+    loadProducts();
   }, []);
 
   return (
     <div>
-      {loading ? (
+      {isLoading ? (
         <h4>Loading...</h4>
       ) : (
-        posts.map((product) => (
-          <Product
-            key={product.id}
-            title={product.title}
-            image={product.image}
-            cost={product.cost}
-            description={product.description}></Product>
+        products.map((product) => (
+          <React.Fragment key={product.id}>
+            <h1>
+              <Link to={`/products/${product.id}`}>{product.title}</Link>
+            </h1>
+            <img src={product.image} alt="productImage" width="200" />
+            <p>Cost: {product.cost}</p>
+            <button>{product.inStock === 0 ? 'not available' : 'add to list'}</button>
+          </React.Fragment>
         ))
       )}
     </div>

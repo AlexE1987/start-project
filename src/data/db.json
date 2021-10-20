@@ -1,26 +1,29 @@
 {
-  "product": [
+  "products": [
     {
       "id": 1,
       "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
       "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
       "image": "https://www.libkids51.ru/img/site/News/2020/%D0%98%D0%A1%D0%9A/LLiqIgzyk80.jpg",
-      "cost": 100
+      "cost": 100,
+      "inStock": 1
     },
     {
       "id": 2,
       "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
       "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
-      "image": "https://i.pinimg.com/236x/57/9e/47/579e4772c402e71b6065d8098536e612--marvel-art-marvel-comics.jpg",
-      "cost": 200
+      "image": "https://pg-comics.ru/wp-content/uploads/2021/03/Ghost-Maker.jpg.pagespeed.ce.Q4DlM9uPQU.jpg",
+      "cost": 100,
+      "inStock": 30
     },
     {
       "id": 3,
       "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-      "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto", 
+      "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
       "image": "https://img4.labirint.ru/rc/2a7a78e8388bc41eaf91c550744f15f9/220x340/books68/671234/cover.jpg?1618230372",
-      "cost": 300
+      "cost": 100,
+      "inStock": 3
     }
-  ]
-  
+  ],
+  "cart": []
 }
