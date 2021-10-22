@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { updateProduct } from '../../../store/store';
 
 const ProductList = () => {
   const [isLoading, setISLoading] = useState(false);
@@ -15,7 +16,6 @@ const ProductList = () => {
       setProducts(products);
       setISLoading(false);
     };
-
     loadProducts();
   }, []);
 
@@ -26,12 +26,18 @@ const ProductList = () => {
       ) : (
         products.map((product) => (
           <React.Fragment key={product.id}>
-            <h1>
-              <Link to={`/products/${product.id}`}>{product.title}</Link>
-            </h1>
+            <Link to={`/products/${product.id}`}>
+              <h1>{product.title}</h1>
+            </Link>
+
             <img src={product.image} alt="productImage" width="200" />
             <p>Cost: {product.cost}</p>
-            <button>{product.inStock === 0 ? 'not available' : 'add to list'}</button>
+            <button
+              onClick={() => {
+                updateProduct(product);
+              }}>
+              {product.inStock <= 0 ? 'not available' : 'add to list'}
+            </button>
           </React.Fragment>
         ))
       )}

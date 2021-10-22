@@ -11,7 +11,6 @@ const Navbar = () => {
           <Link to="/about">About</Link>
         </li>
       </ul>
-      <hr />
     </nav>
   );
 };
