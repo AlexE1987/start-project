@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { updateProduct } from '../../../store/store';
+import { updateProduct } from '../../../api/api';
 
 const ProductList = () => {
   const [isLoading, setISLoading] = useState(false);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Header.css';
-import LoginButton from '../../UI/LoginButton';
+import LoginButton from '../../UI/Buttons/LoginButton';
 import Cart from '../Cart/Cart';
 import Navbar from './Navbar';
 import Modal from '../../UI/Modal/Modal';

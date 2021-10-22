@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { updateProduct } from '../../../store/store';
+import { updateProduct } from '../../../api/api';
 
 const Product = () => {
   const [product, setProduct] = useState([]);
