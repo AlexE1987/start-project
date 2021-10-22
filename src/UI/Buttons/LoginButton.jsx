@@ -1,10 +1,16 @@
 import React from 'react';
 import './LoginButton.css';
-const LoginButton = ({ setIsModalOpened }) => {
+const LoginButton = ({ modalToggle, isLogin }) => {
   return (
-    <button className="btn-login" onClick={setIsModalOpened}>
-      Login
-    </button>
+    <>
+      {isLogin ? (
+        <button className="btn-login">LogOut</button>
+      ) : (
+        <button className="btn-login" onClick={modalToggle}>
+          Login
+        </button>
+      )}
+    </>
   );
 };
 

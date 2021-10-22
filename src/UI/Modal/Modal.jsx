@@ -3,13 +3,12 @@ import { createPortal } from 'react-dom';
 
 import './Modal.css';
 
-const ModalForm = ({ isModalOpened, setIsModalClosed, children }) => {
-  if (!isModalOpened) return null;
+const ModalForm = ({ isModalClosed, modalToggle, isLogin, children }) => {
   return createPortal(
-    <div>
+    <div className={isLogin || isModalClosed ? 'hide' : ''}>
       <div className="modal-wrapper">
         <div className="modal-container">
-          <button className="close-btn" onClick={setIsModalClosed}>
+          <button className="close-btn" onClick={modalToggle}>
             X
           </button>
           <div className="modal-content">{children}</div>

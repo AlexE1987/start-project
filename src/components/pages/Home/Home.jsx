@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductList from '../Product/ProductList';
 
-const Home = () => {
+const Home = ({ userRole }) => {
   return (
     <div>
       Home

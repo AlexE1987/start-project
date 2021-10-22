@@ -27,3 +27,6 @@
   top: 15px;
   right: 20px;
 }
+.hide {
+  display: none;
+}

@@ -4,8 +4,6 @@ export const cart = {
 };
 
 export const updateCart = async (cost) => {
-  console.log(cost);
-  console.log('cart', cart);
   cart.count += 1;
   cart.amount = +cart.amount + cost;
   const response = await fetch('http://localhost:3000/cart', {
