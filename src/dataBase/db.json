@@ -14,7 +14,7 @@
       "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
       "image": "https://pg-comics.ru/wp-content/uploads/2021/03/Ghost-Maker.jpg.pagespeed.ce.Q4DlM9uPQU.jpg",
       "cost": 100,
-      "inStock": 65
+      "inStock": 60
     },
     {
       "id": 3,
@@ -26,7 +26,7 @@
     }
   ],
   "cart": {
-    "count": 4,
-    "amount": 400
+    "count": 5,
+    "amount": 500
   }
 }
