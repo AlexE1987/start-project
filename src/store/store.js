@@ -11,12 +11,12 @@ export const admin = {
 export const authState = {
   name: '',
   password: '',
-  role: '',
+  role: 'admin',
   error: '',
   isLogin: false,
 };
 
-export const productEditState = {
+export const productEditInitialState = {
   title: '',
   description: '',
   inStock: '',
@@ -28,7 +28,7 @@ export const productEditState = {
   stateIsValid: false,
 };
 
-export const productEditErrors = {
+export let productEditErrors = {
   title: '',
   description: '',
   inStock: '',

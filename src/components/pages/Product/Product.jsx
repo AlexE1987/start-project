@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { updateProduct } from '../../../api/api';
-import { inputsValidateProductEdit } from '../../utils/validations';
-// import { productEditState, porductEditErrors } from '../../../store/store';
-import { productEditErrors, productEditState } from '../../../store/store';
+import { validateInputsProductEdit, errorsChecking } from '../../utils/validations';
+import { productEditErrors, productEditInitialState } from '../../../store/store';
+import ProductContent from './ProductContent';
+import ProductEdit from './ProductEdit';
 
 const Product = ({ userRole }) => {
   const params = useParams();
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [productEdit, setProductEdit] = useState(productEditState);
+  const [productEdit, setProductEdit] = useState(productEditInitialState);
   const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
@@ -34,14 +35,14 @@ const Product = ({ userRole }) => {
   };
 
   const validateForm = () => {
-    inputsValidateProductEdit(productEdit, productEditErrors);
-    if (productEditErrors.title || productEditErrors.description || productEditErrors.inStock) {
+    validateInputsProductEdit(productEdit, productEditErrors);
+
+    if (!errorsChecking(productEditErrors)) {
       setProductEdit((prevState) => ({
         ...prevState,
         titleError: productEditErrors.title,
-        description: productEditErrors.description,
-        inStock: productEditErrors.inStock,
-        stateIsValid: false,
+        descriptionError: productEditErrors.description,
+        inStockError: productEditErrors.inStock,
       }));
     } else {
       setProductEdit((prevState) => ({ ...prevState, stateIsValid: true }));
@@ -60,41 +61,22 @@ const Product = ({ userRole }) => {
       ) : (
         <>
           {userRole === 'admin' && <button onClick={toggleEdit}>EDIT</button>}
-
           {!isEdit ? (
-            <>
-              <h1>{product.title}</h1>
-              <img src={product.image} alt="productImage" width="200" />
-              <p>Description: {product.description}</p>
-              <p>Available: {product.inStock}</p>
-              <p>Cost: {product.cost}</p>
-            </>
+            <ProductContent
+              title={product.title}
+              image={product.image}
+              description={product.description}
+              inStock={product.inStock}
+              cost={product.cost}
+            />
           ) : (
-            <form action="" onClick={handleFormSubmit}>
-              <input
-                name="title"
-                type="text"
-                value={productEdit.title}
-                onChange={getInputsValues}
-              />
-              <img src={product.image} alt="productImage" width="200" />
-              <textarea
-                name="description"
-                value={productEdit.description}
-                cols="20"
-                rows="10"
-                onChange={getInputsValues}>
-                {product.description}
-              </textarea>
-              <input
-                name="inStock"
-                type="text"
-                value={productEdit.inStock}
-                onChange={getInputsValues}
-              />
-              <p>Cost: {product.cost}</p>
-              <button>SAVE</button>
-            </form>
+            <ProductEdit
+              getInputsValues={getInputsValues}
+              handleFormSubmit={handleFormSubmit}
+              productEdit={productEdit}
+              productEditErrors={productEditErrors}
+              image={product.image}
+            />
           )}
 
           <button

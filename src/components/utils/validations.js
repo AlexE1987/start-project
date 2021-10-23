@@ -16,26 +16,23 @@ export const validateInputsForm = (auth, authState, admin, customer) => {
   }
 };
 
-export const inputsValidateProductEdit = (productEditState, productEditErrors) => {
-  if (productEditState.title.trim().length > 30) {
-    productEditErrors.title = 'No more than 30 symbols available';
+export const validateInputsProductEdit = (productEdit, productEditErrors) => {
+  if (productEdit.title.trim().length > 5) {
+    productEditErrors.title = 'too much symbols';
+  } else {
+    productEditErrors.title = '';
   }
-  if (productEditState.description.trim().length > 30) {
-    productEditErrors.description = 'No more than360 symbols available';
+  if (productEdit.description.trim().length > 5) {
+    productEditErrors.description = 'too much symbols';
+  } else {
+    productEditErrors.description = '';
   }
-  if (productEditState.inStockError.trim().length > 30) {
-    productEditErrors.inStockError = 'No more than 60 symbols available';
+  if (productEdit.inStock.trim().length > 5) {
+    productEditErrors.inStock = 'too much symbols';
+  } else {
+    productEditErrors.inStock = '';
   }
-
-  // if (!/^[A-ZА-Я]/.test(productEditState.description.trim())) {
-  //   productEditState.description === ''
-  //     ? (productEditErrors.description = 'Поле пустое. Заполните пожалуйста')
-  //     : (productEditErrors.description = 'Имя должно начинаться с заглавной буквы');
-  // } else productEditErrors.description = '';
-
-  // if (!/^[A-ZА-Я]/.test(productEditState.inStockError.trim())) {
-  //   productEditState.inStockError === ''
-  //     ? (productEditErrors.inStockError = 'Поле пустое. Заполните пожалуйста')
-  //     : (productEditErrors.inStockError = 'Имя должно начинаться с заглавной буквы');
-  // } else productEditErrors.inStockError = '';
 };
+
+export const errorsChecking = (productEditErrors) =>
+  Object.values(productEditErrors).every((error) => error === '');
