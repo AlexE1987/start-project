@@ -13,8 +13,10 @@ const ProductList = ({ userRole }) => {
   const [isLoading, setISLoading] = useState(false);
 
   useEffect(() => {
+    setISLoading(true);
     getAllProducts().then((products) => {
       dispatch(setAllproducts(products));
+      setISLoading(false);
     });
   }, []);
 
@@ -29,9 +31,11 @@ const ProductList = ({ userRole }) => {
               <Link to={`/products/${id}`}>
                 <h1 className="product__title">{title}</h1>
               </Link>
-              <img className="product-image" src={image} alt="productImage" />
+              <div className="image-container">
+                <img className="product-image" src={image} alt="productImage" />
+              </div>
               <div>
-                <p className="product-cost">Cost: {price}</p>
+                <p className="product-cost">Cost: {price} $</p>
 
                 {userRole ? (
                   <button

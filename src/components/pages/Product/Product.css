@@ -1,5 +1,6 @@
 .product__container {
   min-width: 150px;
+  max-width: 300px;
   padding: 0 10px;
 
   height: 436px;
@@ -10,10 +11,20 @@
 .product__title {
   color: #000;
   font-size: 23px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 190px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  width: 150px;
 }
 .product-image {
-  width: 200px;
-  height: 280px;
+  width: inherit;
+  /* height: 280px; */
 }
 
 .product-button {
