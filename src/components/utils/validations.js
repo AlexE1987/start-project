@@ -11,7 +11,7 @@ export const validateInputsForm = (auth, authState) => {
 };
 
 export const validateTitle = (productEdit, productEditErrors) => {
-  if (productEdit.title.trim().length < 4) {
+  if (productEdit.title.trim().length <= 30) {
     productEditErrors.title = '';
   } else {
     productEditErrors.title = 'too much symbols, max 30';
@@ -19,15 +19,15 @@ export const validateTitle = (productEdit, productEditErrors) => {
 };
 
 export const validateDescription = (productEdit, productEditErrors) => {
-  if (productEdit.description.trim().length < 4) {
+  if (productEdit.description.trim().length <= 600) {
     productEditErrors.description = '';
   } else {
-    productEditErrors.description = 'too much symbols, max 30';
+    productEditErrors.description = 'too much symbols, max 600';
   }
 };
 
 export const validateInStock = (productEdit, productEditErrors) => {
-  if (productEdit.inStock.toString().trim().length < 4) {
+  if (productEdit.inStock.toString().trim().length <= 30) {
     productEditErrors.inStock = '';
   } else {
     productEditErrors.inStock = 'too much symbols, max 30';
