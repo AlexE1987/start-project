@@ -8,12 +8,11 @@ const LoginForm = ({ getInputsValues, validate, auth }) => {
     if (auth.isLogin) {
       history.push('/');
     }
-  }, []);
+  }, [auth.isLogin, history]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     validate();
-    console.log('islog2', auth.isLogin);
     if (!auth.isLogin) {
       history.push('/');
     }

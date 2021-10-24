@@ -37,19 +37,16 @@ export const updateProduct = async (product, setProduct = null) => {
 };
 
 export const updateEditProduct = async (product, editedProduct, setProduct) => {
-  product.title = editedProduct.title;
-  product.description = editedProduct.description;
-  product.inStock = editedProduct.inStock;
+  console.log('prod', product);
+  console.log('editProd', editedProduct);
 
-  setProduct((prevState) => ({
-    ...prevState,
-    title: editedProduct.title,
-    description: editedProduct.description,
-    inStock: editedProduct.inStock,
-  }));
+  const data = {
+    a: 0,
+    b: 0,
+  };
   const response = await fetch(`http://localhost:3000/products/${product.id}`, {
     method: 'PUT',
-    body: JSON.stringify(product),
+    body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json',
     },

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { authInitialState } from './store/store';
 import { validateInputsForm } from './components/utils/validations';
@@ -45,7 +45,7 @@ function App() {
       <Modal isLogin={auth.isLogin} isModalClosed={isModalClosed} modalToggle={modalToggle}>
         Enter your name and password
         <LoginForm
-          auth={auth}
+          auth
           validate={validate}
           modalToggle={modalToggle}
           getInputsValues={getInputsValues}

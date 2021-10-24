@@ -30,13 +30,13 @@ const Product = ({ userRole }) => {
     setIsEdit(!isEdit);
   };
 
+  useEffect(() => {});
   const getInputsValues = ({ target: { value, name } }) => {
     setProductEdit((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const validateForm = () => {
     validateInputsProductEdit(productEdit, productEditErrors);
-
     if (!errorsChecking(productEditErrors)) {
       setProductEdit((prevState) => ({
         ...prevState,
@@ -52,6 +52,9 @@ const Product = ({ userRole }) => {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     validateForm();
+    // if (productEdit.stateIsValid) {
+    updateEditProduct(product, productEdit);
+    // }
   };
 
   return (
@@ -68,14 +71,14 @@ const Product = ({ userRole }) => {
               description={product.description}
               inStock={product.inStock}
               cost={product.cost}
-              userRole={userRole}
+              userRole
             />
           ) : (
             <ProductEdit
               getInputsValues={getInputsValues}
               handleFormSubmit={handleFormSubmit}
-              product={product}
-              productEdit={productEdit}
+              product
+              productEdit
               productEditErrors={productEditErrors}
               image={product.image}
               updateEditProduct={updateEditProduct}

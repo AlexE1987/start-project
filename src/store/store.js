@@ -1,7 +1,7 @@
 export const authInitialState = {
   name: '',
   password: '',
-  role: '',
+  role: 'admin',
   error: '',
   isLogin: false,
 };

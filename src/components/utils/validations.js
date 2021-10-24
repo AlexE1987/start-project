@@ -11,16 +11,18 @@ export const validateInputsForm = (auth, authState) => {
 };
 
 export const validateInputsProductEdit = (productEdit, productEditErrors) => {
-  if (productEdit.title.trim().length > 30) {
+  if (productEdit.title.trim().length > 5) {
     productEditErrors.title = 'too much symbols, max 30';
   } else {
     productEditErrors.title = '';
   }
+
   if (productEdit.description.trim().length > 600) {
     productEditErrors.description = 'too much symbols, max 600';
   } else {
     productEditErrors.description = '';
   }
+
   if (productEdit.inStock.trim().length > 30) {
     productEditErrors.inStock = 'too much symbols,max 30';
   } else {
