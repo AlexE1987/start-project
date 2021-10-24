@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { authInitialState } from './store/store';
+import { authInitialState } from './storeOld/storeOld';
 import { validateInputsForm } from './components/utils/validations';
 import './App.css';
 
@@ -12,6 +13,8 @@ import Product from './components/pages/Product/Product';
 import LoginForm from './UI/Forms/LoginForm';
 
 function App() {
+  // const store = useSelector((store) => store);
+  // console.log(store);
   const [isModalClosed, setisModalClosed] = useState(true);
   const [auth, setAuth] = useState(authInitialState);
 

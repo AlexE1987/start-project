@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-import { updateProductInStock } from '../../../api/api';
 import './Product.css';
 
+import { getAllProducts, updateProductInStock } from '../../../api/api';
+import { setAllproducts } from '../../../redux/actions/products';
+// import store from '../../../redux/store';
+
 const ProductList = ({ userRole }) => {
+  const products = useSelector((store) => store.allProducts.products);
+  const dispatch = useDispatch();
   const [isLoading, setISLoading] = useState(false);
-  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const loadProducts = async () => {
-      setISLoading(true);
-      let products = await fetch('http://localhost:3000/products')
-        .then((response) => response.json())
-        .then((data) => data);
-
-      setProducts(products);
-      setISLoading(false);
-    };
-    loadProducts();
+    getAllProducts().then((products) => {
+      dispatch(setAllproducts(products));
+    });
   }, []);
 
   return (
@@ -26,16 +23,15 @@ const ProductList = ({ userRole }) => {
       {isLoading ? (
         <h4>Loading...</h4>
       ) : (
-        products.map((product) => (
-          <React.Fragment key={product.id}>
+        products.map(({ id, title, image, price }, ...product) => (
+          <React.Fragment key={id}>
             <div className="product__container">
-              <Link to={`/products/${product.id}`}>
-                <h1 className="product__title">{product.title}</h1>
+              <Link to={`/products/${id}`}>
+                <h1 className="product__title">{title}</h1>
               </Link>
-
-              <img className="product-image" src={product.image} alt="productImage" />
+              <img className="product-image" src={image} alt="productImage" />
               <div>
-                <p className="product-cost">Cost: {product.cost}</p>
+                <p className="product-cost">Cost: {price}</p>
 
                 {userRole ? (
                   <button

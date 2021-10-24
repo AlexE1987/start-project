@@ -1,3 +1,5 @@
+import { GET_ALL_PRODUCTS_URL } from '../constants/productsUrls';
+
 export const cart = {
   count: 0,
   amount: 0,
@@ -44,4 +46,11 @@ export const updateEditProduct = async (productEdit) => {
       'Content-Type': 'application/json',
     },
   });
+};
+
+export const getAllProducts = async () => {
+  const response = await fetch(GET_ALL_PRODUCTS_URL, {
+    method: 'GET',
+  });
+  return response.json();
 };
