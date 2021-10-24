@@ -15,7 +15,7 @@ export const updateCart = async (cost) => {
   });
 };
 
-export const updateProduct = async (product, setProduct = null) => {
+export const updateProductInStock = async (product, setProduct = null) => {
   product.inStock -= 1;
   if (product.inStock < 0) return;
   const response = await fetch(`http://localhost:3000/products/${product.id}`, {
@@ -36,17 +36,10 @@ export const updateProduct = async (product, setProduct = null) => {
   }
 };
 
-export const updateEditProduct = async (product, editedProduct, setProduct) => {
-  console.log('prod', product);
-  console.log('editProd', editedProduct);
-
-  const data = {
-    a: 0,
-    b: 0,
-  };
-  const response = await fetch(`http://localhost:3000/products/${product.id}`, {
+export const updateEditProduct = async (productEdit) => {
+  const response = await fetch(`http://localhost:3000/products/${productEdit.id}`, {
     method: 'PUT',
-    body: JSON.stringify(data),
+    body: JSON.stringify(productEdit),
     headers: {
       'Content-Type': 'application/json',
     },

@@ -19,12 +19,6 @@ export const productEditInitialState = {
   stateIsValid: false,
 };
 
-export let productEditErrors = {
-  title: '',
-  description: '',
-  inStock: '',
-};
-
 export const productEditeData = {
   id: '',
   title: '',

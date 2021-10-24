@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { updateProduct } from '../../../api/api';
+import { updateProductInStock } from '../../../api/api';
 
 const ProductList = ({ userRole }) => {
   const [isLoading, setISLoading] = useState(false);
@@ -36,7 +36,7 @@ const ProductList = ({ userRole }) => {
             {userRole ? (
               <button
                 onClick={() => {
-                  updateProduct(product);
+                  updateProductInStock(product);
                 }}>
                 {product.inStock <= 0 ? 'not available' : 'add to list'}
               </button>

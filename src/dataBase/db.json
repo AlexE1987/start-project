@@ -1,13 +1,12 @@
 {
   "products": [
-    
     {
       "id": 1,
-      "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-      "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+      "title": "22",
+      "description": "22",
       "image": "https://www.libkids51.ru/img/site/News/2020/%D0%98%D0%A1%D0%9A/LLiqIgzyk80.jpg",
       "cost": 100,
-      "inStock": 60
+      "inStock": "111"
     },
     {
       "id": 2,

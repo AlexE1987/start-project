@@ -10,23 +10,27 @@ export const validateInputsForm = (auth, authState) => {
   }
 };
 
-export const validateInputsProductEdit = (productEdit, productEditErrors) => {
-  if (productEdit.title.trim().length > 5) {
-    productEditErrors.title = 'too much symbols, max 30';
-  } else {
+export const validateTitle = (productEdit, productEditErrors) => {
+  if (productEdit.title.trim().length < 4) {
     productEditErrors.title = '';
-  }
-
-  if (productEdit.description.trim().length > 600) {
-    productEditErrors.description = 'too much symbols, max 600';
   } else {
+    productEditErrors.title = 'too much symbols, max 30';
+  }
+};
+
+export const validateDescription = (productEdit, productEditErrors) => {
+  if (productEdit.description.trim().length < 4) {
     productEditErrors.description = '';
-  }
-
-  if (productEdit.inStock.trim().length > 30) {
-    productEditErrors.inStock = 'too much symbols,max 30';
   } else {
+    productEditErrors.description = 'too much symbols, max 30';
+  }
+};
+
+export const validateInStock = (productEdit, productEditErrors) => {
+  if (productEdit.inStock.toString().trim().length < 4) {
     productEditErrors.inStock = '';
+  } else {
+    productEditErrors.inStock = 'too much symbols, max 30';
   }
 };
 
