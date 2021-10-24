@@ -8,7 +8,7 @@ const LoginForm = ({ getInputsValues, validate, auth }) => {
     if (auth.isLogin) {
       history.push('/');
     }
-  }, [auth.isLogin, history]);
+  }, [auth.isLogin]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,7 +26,7 @@ const LoginForm = ({ getInputsValues, validate, auth }) => {
           name="name"
           type="text"
           onChange={getInputsValues}
-          value={auth.name}
+          // value={auth.name}
           placeholder="customer or admin"
         />
       </section>
@@ -36,7 +36,7 @@ const LoginForm = ({ getInputsValues, validate, auth }) => {
           name="password"
           type="password"
           onChange={getInputsValues}
-          value={auth.password}
+          // value={auth.password}
           placeholder="customer or admin"
         />
       </section>

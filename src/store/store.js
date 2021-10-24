@@ -1,7 +1,7 @@
 export const authInitialState = {
   name: '',
   password: '',
-  role: 'admin',
+  role: '',
   error: '',
   isLogin: false,
 };
@@ -17,6 +17,12 @@ export const productEditInitialState = {
   inStockError: '',
 
   stateIsValid: false,
+};
+
+export let productEditErrors = {
+  title: '',
+  description: '',
+  inStock: '',
 };
 
 export const productEditeData = {
