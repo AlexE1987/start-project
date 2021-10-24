@@ -1,0 +1,11 @@
+.cart__container {
+  color: white;
+}
+.cart-img {
+  width: 20px;
+  height: 20px;
+}
+.cart-desc {
+  color: inherit;
+  margin: 5px 0;
+}

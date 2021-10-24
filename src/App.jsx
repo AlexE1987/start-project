@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { authInitialState } from './store/store';
 import { validateInputsForm } from './components/utils/validations';
+import './App.css';
 
 import Header from './components/Header/Header';
 import Modal from './UI/Modal/Modal';
@@ -41,21 +42,23 @@ function App() {
   };
   return (
     <Router>
-      <Header logOut={logOut} role={auth.role} isLogin={auth.isLogin} modalToggle={modalToggle} />
-      <Modal isLogin={auth.isLogin} isModalClosed={isModalClosed} modalToggle={modalToggle}>
-        Enter your name and password
-        <LoginForm
-          auth
-          validate={validate}
-          modalToggle={modalToggle}
-          getInputsValues={getInputsValues}
-        />
-      </Modal>
-      <Switch>
-        <Route path="/about" component={About} />
-        <Route path="/products/:id" component={() => <Product userRole={auth.role} />} />
-        <Route path="/" component={() => <Home userRole={auth.role} />} />
-      </Switch>
+      <div className="main__wrapper">
+        <Header logOut={logOut} role={auth.role} isLogin={auth.isLogin} modalToggle={modalToggle} />
+        <Modal isLogin={auth.isLogin} isModalClosed={isModalClosed} modalToggle={modalToggle}>
+          Enter your name and password
+          <LoginForm
+            auth
+            validate={validate}
+            modalToggle={modalToggle}
+            getInputsValues={getInputsValues}
+          />
+        </Modal>
+        <Switch>
+          <Route path="/about" component={About} />
+          <Route path="/products/:id" component={() => <Product userRole={auth.role} />} />
+          <Route path="/" component={() => <Home userRole={auth.role} />} />
+        </Switch>
+      </div>
     </Router>
   );
 }

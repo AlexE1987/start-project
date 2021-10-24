@@ -2,7 +2,7 @@
   "products": [
     {
       "id": 1,
-      "title": "22",
+      "title": "Title of product",
       "description": "222",
       "image": "https://www.libkids51.ru/img/site/News/2020/%D0%98%D0%A1%D0%9A/LLiqIgzyk80.jpg",
       "cost": 100,
@@ -10,7 +10,7 @@
     },
     {
       "id": 2,
-      "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      "title": "Title of product",
       "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
       "image": "https://pg-comics.ru/wp-content/uploads/2021/03/Ghost-Maker.jpg.pagespeed.ce.Q4DlM9uPQU.jpg",
       "cost": 100,
@@ -18,9 +18,57 @@
     },
     {
       "id": 3,
-      "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      "title": "Title of product",
       "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
       "image": "https://img4.labirint.ru/rc/2a7a78e8388bc41eaf91c550744f15f9/220x340/books68/671234/cover.jpg?1618230372",
+      "cost": 150,
+      "inStock": 273
+    },
+    {
+      "id": 4,
+      "title": "Title of product",
+      "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQSKs6rcmPPmS21dxyFt9AkOUGU1XErhi5yw&usqp=CAU",
+      "cost": 150,
+      "inStock": 273
+    },
+    {
+      "id": 5,
+      "title": "Title of product",
+      "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+      "image": "https://monster-book.com/sites/default/files/styles/sc290x400/public/books/kak-risovat-komiksy_0.png?itok=ahlcADtZ",
+      "cost": 150,
+      "inStock": 273
+    },
+    {
+      "id": 6,
+      "title": "Title of product",
+      "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_JYNIInMZJi85Vg4ohSu2rNcf_VcReViSyA&usqp=CAU",
+      "cost": 150,
+      "inStock": 273
+    },
+    {
+      "id": 7,
+      "title": "Title of product",
+      "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+      "image": "https://i.pinimg.com/236x/7a/cc/b7/7accb7206cb31a4b1626b6bb05574fb4.jpg",
+      "cost": 150,
+      "inStock": 273
+    },
+    {
+      "id": 8,
+      "title": "Title of product",
+      "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+      "image": "https://hobbygames.cdnvideo.ru/image/cache/hobbygames_beta/data/HobbyWorld/Komiks_igra_pohishenije/Pohichenie-1024x1024-wm.jpg",
+      "cost": 150,
+      "inStock": 273
+    },
+    {
+      "id": 9,
+      "title": "Title of product",
+      "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+      "image": "https://litvek.com/i/69/389669/_0.jpg",
       "cost": 150,
       "inStock": 273
     }

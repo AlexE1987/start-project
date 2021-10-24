@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 import { updateProductInStock } from '../../../api/api';
+import './Product.css';
 
 const ProductList = ({ userRole }) => {
   const [isLoading, setISLoading] = useState(false);
@@ -20,33 +22,38 @@ const ProductList = ({ userRole }) => {
   }, []);
 
   return (
-    <div>
+    <>
       {isLoading ? (
         <h4>Loading...</h4>
       ) : (
         products.map((product) => (
           <React.Fragment key={product.id}>
-            <Link to={`/products/${product.id}`}>
-              <h1>{product.title}</h1>
-            </Link>
+            <div className="product__container">
+              <Link to={`/products/${product.id}`}>
+                <h1 className="product__title">{product.title}</h1>
+              </Link>
 
-            <img src={product.image} alt="productImage" width="200" />
-            <p>Cost: {product.cost}</p>
+              <img className="product-image" src={product.image} alt="productImage" />
+              <div>
+                <p className="product-cost">Cost: {product.cost}</p>
 
-            {userRole ? (
-              <button
-                onClick={() => {
-                  updateProductInStock(product);
-                }}>
-                {product.inStock <= 0 ? 'not available' : 'add to list'}
-              </button>
-            ) : (
-              <button>Please sign in for add product</button>
-            )}
+                {userRole ? (
+                  <button
+                    className="product-button"
+                    onClick={() => {
+                      updateProductInStock(product);
+                    }}>
+                    {product.inStock <= 0 ? 'not available' : 'add to list'}
+                  </button>
+                ) : (
+                  <button className="product-button">Please sign in for add product</button>
+                )}
+              </div>
+            </div>
           </React.Fragment>
         ))
       )}
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { cart } from '../../api/api';
+import './Cart.css';
 
 const Cart = () => {
   const [cartState, setCartState] = useState([]);
@@ -15,10 +16,10 @@ const Cart = () => {
   }, []);
 
   return (
-    <div>
-      Cart
-      <p>count: {cartState.count}</p>
-      <p>amount: {cartState.amount}</p>
+    <div className="cart__container">
+      Cart:
+      <p className="cart-desc">count - {cartState.count}</p>
+      <p className="cart-desc">amount - {cartState.amount}</p>
     </div>
   );
 };

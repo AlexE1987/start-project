@@ -1,6 +1,8 @@
 .btn-login {
-  width: 100px;
+  width: 99px;
   height: 50px;
   border-radius: 5%;
-  background-color: aquamarine;
+  background-color: transparent;
+  cursor: pointer;
+  color: wheat;
 }

@@ -1,4 +1,24 @@
 .header__container {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
+  height: 132px;
+  background: #1f2326;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.navbar__wrapper {
+  display: flex;
+}
+
+.navbar__list {
+  width: 20em;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.navbar__list-item .navbar__list-link {
+  padding: 0;
+  color: #fff;
 }
