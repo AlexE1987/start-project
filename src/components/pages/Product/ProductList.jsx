@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { updateProduct } from '../../../api/api';
 
-const ProductList = () => {
+const ProductList = ({ userRole }) => {
   const [isLoading, setISLoading] = useState(false);
   const [products, setProducts] = useState([]);
 
@@ -32,12 +32,17 @@ const ProductList = () => {
 
             <img src={product.image} alt="productImage" width="200" />
             <p>Cost: {product.cost}</p>
-            <button
-              onClick={() => {
-                updateProduct(product);
-              }}>
-              {product.inStock <= 0 ? 'not available' : 'add to list'}
-            </button>
+
+            {userRole ? (
+              <button
+                onClick={() => {
+                  updateProduct(product);
+                }}>
+                {product.inStock <= 0 ? 'not available' : 'add to list'}
+              </button>
+            ) : (
+              <button>Please sign in for add product</button>
+            )}
           </React.Fragment>
         ))
       )}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { updateProduct } from '../../../api/api';
+import { updateProduct, updateEditProduct } from '../../../api/api';
 import { validateInputsProductEdit, errorsChecking } from '../../utils/validations';
 import { productEditErrors, productEditInitialState } from '../../../store/store';
 import ProductContent from './ProductContent';
@@ -8,9 +8,9 @@ import ProductEdit from './ProductEdit';
 
 const Product = ({ userRole }) => {
   const params = useParams();
-  const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [productEdit, setProductEdit] = useState(productEditInitialState);
+  const [product, setProduct] = useState([]);
+  const [productEdit, setProductEdit] = useState(productEditInitialState); //!
   const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
@@ -68,23 +68,30 @@ const Product = ({ userRole }) => {
               description={product.description}
               inStock={product.inStock}
               cost={product.cost}
+              userRole={userRole}
             />
           ) : (
             <ProductEdit
               getInputsValues={getInputsValues}
               handleFormSubmit={handleFormSubmit}
+              product={product}
               productEdit={productEdit}
               productEditErrors={productEditErrors}
               image={product.image}
+              updateEditProduct={updateEditProduct}
             />
           )}
 
-          <button
-            onClick={() => {
-              updateProduct(product, setProduct);
-            }}>
-            {product.inStock <= 0 ? 'not available' : 'add to list'}
-          </button>
+          {userRole ? (
+            <button
+              onClick={() => {
+                updateProduct(product, setProduct);
+              }}>
+              {product.inStock <= 0 ? 'not available' : 'add to list'}
+            </button>
+          ) : (
+            <button>Please sign in for add product</button>
+          )}
         </>
       )}
     </div>

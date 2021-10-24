@@ -5,7 +5,7 @@ const Home = ({ userRole }) => {
   return (
     <div>
       Home
-      <ProductList />
+      <ProductList userRole={userRole} />
     </div>
   );
 };

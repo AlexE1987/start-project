@@ -1,12 +1,17 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import { productEditeData } from '../../../store/store';
+import { updateEditProduct } from '../../../api/api';
 const ProductEdit = ({
   getInputsValues,
   handleFormSubmit,
   productEdit,
+  product,
   productEditErrors,
   image,
+  updateEditProduct,
 }) => {
+  // const [newProduct, setNewProduct] = useState({});
+
   return (
     <form
       style={{ width: '500px', display: 'flex', flexDirection: 'column' }}
@@ -20,13 +25,13 @@ const ProductEdit = ({
       <textarea
         name="description"
         value={productEdit.description}
-        cols="20"
+        cols="10"
         rows="10"
         onChange={getInputsValues}></textarea>
       <p>{productEditErrors.description}</p>
       <input name="inStock" type="text" value={productEdit.inStock} onChange={getInputsValues} />
       <p>Cost: {productEditErrors.inStock}</p>
-      <button>SAVE</button>
+      <button onClick={() => {}}>SAVE</button>
     </form>
   );
 };

@@ -1,22 +1,13 @@
-export const customer = {
-  name: 'customer',
-  password: 'customer',
-};
-
-export const admin = {
-  name: 'admin',
-  password: 'admin',
-};
-
-export const authState = {
+export const authInitialState = {
   name: '',
   password: '',
-  role: 'admin',
+  role: '',
   error: '',
   isLogin: false,
 };
 
 export const productEditInitialState = {
+  id: '',
   title: '',
   description: '',
   inStock: '',
@@ -31,5 +22,14 @@ export const productEditInitialState = {
 export let productEditErrors = {
   title: '',
   description: '',
+  inStock: '',
+};
+
+export const productEditeData = {
+  id: '',
+  title: '',
+  description: '',
+  image: '',
+  cost: '',
   inStock: '',
 };
