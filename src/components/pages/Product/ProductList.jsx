@@ -45,7 +45,7 @@ const ProductList = ({ userRole }) => {
                     {product.inStock <= 0 ? 'not available' : 'add to list'}
                   </button>
                 ) : (
-                  <button className="product-button">Please sign in for add product</button>
+                  <button className="product-button">Please login for add product</button>
                 )}
               </div>
             </div>

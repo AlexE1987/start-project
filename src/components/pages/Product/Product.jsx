@@ -12,7 +12,7 @@ const Product = ({ userRole }) => {
   const dispatch = useDispatch();
   const productData = useSelector((store) => store.selectedProduct.product);
 
-  // const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
@@ -25,26 +25,14 @@ const Product = ({ userRole }) => {
         setIsLoading(false);
       });
   }, [params.id]);
-  // useEffect(() => {
-  //   const loadProduct = async () => {
-  //     setIsLoading(true);
-  //     let productData = await fetch(`http://localhost:3000/products/${params.id}`)
-  //       .then((response) => response.json())
-  //       .then((data) => data);
-  //     setProduct(productData);
-  //     setIsLoading(false);
-  //   };
-
-  //   loadProduct();
-  // }, [params.id]);
 
   const toggleEdit = () => {
     setIsEdit(!isEdit);
   };
 
-  // const updateProduct = (newProduct) => {
-  //   setProduct(newProduct);
-  // };
+  const updateProduct = (newProduct) => {
+    setProduct(newProduct);
+  };
 
   return (
     <div>
@@ -59,7 +47,7 @@ const Product = ({ userRole }) => {
               image={productData.image}
               description={productData.description}
               inStock={productData.inStock}
-              cost={productData.cost}
+              cost={productData.price}
               userRole
             />
           ) : (
@@ -68,19 +56,19 @@ const Product = ({ userRole }) => {
               image={productData.image}
               updateEditProduct={updateEditProduct}
               toggleEdit={toggleEdit}
-              // updateProduct={updateProduct}
+              updateProduct={updateProduct}
             />
           )}
 
           {userRole ? (
             <button
               onClick={() => {
-                // updateProductInStock(product, setProduct);
+                updateProductInStock(productData, setProduct);
               }}>
               {productData.inStock <= 0 ? 'not available' : 'add to list'}
             </button>
           ) : (
-            <button>Please sign in for add product</button>
+            <button>Please login for add product</button>
           )}
         </>
       )}
