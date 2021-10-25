@@ -7,7 +7,7 @@ const Cart = () => {
 
   useEffect(() => {
     const loadCart = async () => {
-      let cartData = await fetch('http://localhost:3000/cart')
+      let cartData = await fetch('https://fakestoreapi.com/carts')
         .then((response) => response.json())
         .then((data) => data);
       setCartState(cartData);

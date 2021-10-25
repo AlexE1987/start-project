@@ -11,6 +11,11 @@ const ProductList = ({ userRole }) => {
   const dispatch = useDispatch();
   const [isLoading, setISLoading] = useState(false);
 
+  // useEffect(() => {
+  //   userRole
+  //   console.log('userRole', userRole);
+  // },[userRole]);
+
   useEffect(() => {
     setISLoading(true);
     getAllProducts().then((products) => {
@@ -36,7 +41,7 @@ const ProductList = ({ userRole }) => {
               <div>
                 <p className="product-cost">Cost: {price} $</p>
 
-                {userRole ? (
+                {/* {userRole ? (
                   <button
                     className="product-button product-button_add"
                     onClick={() => {
@@ -46,7 +51,7 @@ const ProductList = ({ userRole }) => {
                   </button>
                 ) : (
                   <button className="product-button">Please login for add product</button>
-                )}
+                )} */}
               </div>
             </div>
           </React.Fragment>

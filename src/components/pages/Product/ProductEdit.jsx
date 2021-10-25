@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './Product.css';
 
-// import {} from '../../../storeOld/storeOld';
-import {
-  validateTitle,
-  validateDescription,
-  // validateInStock,
-  errorsChecking,
-} from '../../utils/validations';
+import { validateTitle, validateDescription, errorsChecking } from '../../utils/validations';
 import { updateEditProduct } from '../../../api/api';
 
 let productEditErrors = {
   title: '',
   description: '',
-  // inStock: '',
 };
 const ProductEdit = ({ product, image, toggleEdit, updateProduct }) => {
   const [productEdit, setProductEdit] = useState(product);
@@ -30,9 +23,6 @@ const ProductEdit = ({ product, image, toggleEdit, updateProduct }) => {
   useEffect(() => {
     validateDescription(productEdit, productEditErrors);
   });
-  // useEffect(() => {
-  //   validateInStock(productEdit, productEditErrors);
-  // });
 
   useEffect(() => {
     if (!errorsChecking(productEditErrors)) {
@@ -73,8 +63,7 @@ const ProductEdit = ({ product, image, toggleEdit, updateProduct }) => {
           rows="10"
           onChange={getInputsValues}></textarea>
         <p>{productEditErrors.description}</p>
-        {/* <input name="inStock" type="text" value={productEdit.inStock} onChange={getInputsValues} />
-        <p>{productEditErrors.inStock}</p> */}
+
         <button className="product-button product-button_save">SAVE</button>
       </form>
     </div>
