@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import {} from '../../../storeOld/storeOld';
+import './Product.css';
+
+// import {} from '../../../storeOld/storeOld';
 import {
   validateTitle,
   validateDescription,
@@ -52,14 +54,19 @@ const ProductEdit = ({ product, image, toggleEdit, updateProduct }) => {
   };
 
   return (
-    <>
-      <form
-        style={{ width: '500px', display: 'flex', flexDirection: 'column' }}
-        onSubmit={handleFormSubmit}>
-        <input name="title" type="text" value={productEdit.title} onChange={getInputsValues} />
+    <div className="edit__container">
+      <form className="edit-form" onSubmit={handleFormSubmit}>
+        <input
+          className="edit-field"
+          name="title"
+          type="text"
+          value={productEdit.title}
+          onChange={getInputsValues}
+        />
         <p>{productEditErrors.title}</p>
         <img src={image} alt="productImage" width="200" />
         <textarea
+          className="edit-field edit-field_description"
           name="description"
           value={productEdit.description}
           cols="10"
@@ -68,9 +75,9 @@ const ProductEdit = ({ product, image, toggleEdit, updateProduct }) => {
         <p>{productEditErrors.description}</p>
         {/* <input name="inStock" type="text" value={productEdit.inStock} onChange={getInputsValues} />
         <p>{productEditErrors.inStock}</p> */}
-        <button>SAVE</button>
+        <button className="product-button product-button_save">SAVE</button>
       </form>
-    </>
+    </div>
   );
 };
 

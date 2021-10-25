@@ -1,7 +1,7 @@
 import { ActionTypes } from '../../constants/constants';
 
 const initialState = {
-  product: null,
+  product: {},
 };
 
 export const selectedProductReducer = (state = initialState, { type, payload }) => {

@@ -38,7 +38,7 @@ const ProductList = ({ userRole }) => {
 
                 {userRole ? (
                   <button
-                    className="product-button"
+                    className="product-button product-button_add"
                     onClick={() => {
                       updateProductInStock(product);
                     }}>

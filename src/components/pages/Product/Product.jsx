@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { updateProductInStock, updateEditProduct, getProductById } from '../../../api/api';
 import { setSelectedProduct } from '../../../redux/actions/products';
+import './Product.css';
 import ProductContent from './ProductContent';
 import ProductEdit from './ProductEdit';
 
@@ -40,16 +41,35 @@ const Product = ({ userRole }) => {
         <h4>Loading...</h4>
       ) : (
         <>
-          {userRole === 'admin' && <button onClick={toggleEdit}>EDIT</button>}
+          {userRole === 'admin' && (
+            <button
+              className={isEdit ? 'product-button_is-edit' : 'product-button product-button_edit'}
+              onClick={toggleEdit}>
+              Edit product
+            </button>
+          )}
           {!isEdit ? (
-            <ProductContent
-              title={productData.title}
-              image={productData.image}
-              description={productData.description}
-              inStock={productData.inStock}
-              cost={productData.price}
-              userRole
-            />
+            <>
+              <ProductContent
+                title={productData.title}
+                image={productData.image}
+                description={productData.description}
+                inStock={productData.inStock}
+                cost={productData.price}
+                userRole
+              />
+              {userRole ? (
+                <button
+                  className="product-button"
+                  onClick={() => {
+                    updateProductInStock(productData, setProduct);
+                  }}>
+                  {productData.inStock <= 0 ? 'not available' : 'add to list'}
+                </button>
+              ) : (
+                <button className="product-button">Please login for add product</button>
+              )}
+            </>
           ) : (
             <ProductEdit
               product={productData}
@@ -58,17 +78,6 @@ const Product = ({ userRole }) => {
               toggleEdit={toggleEdit}
               updateProduct={updateProduct}
             />
-          )}
-
-          {userRole ? (
-            <button
-              onClick={() => {
-                updateProductInStock(productData, setProduct);
-              }}>
-              {productData.inStock <= 0 ? 'not available' : 'add to list'}
-            </button>
-          ) : (
-            <button>Please login for add product</button>
           )}
         </>
       )}
