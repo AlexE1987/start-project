@@ -6,3 +6,10 @@ export const setAllproducts = (productsData) => {
     payload: productsData,
   };
 };
+
+export const setSelectedProduct = (productData) => {
+  return {
+    type: ActionTypes.SET_SELECTED_PRODUCT,
+    payload: productData,
+  };
+};

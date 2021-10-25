@@ -54,3 +54,10 @@ export const getAllProducts = async () => {
   });
   return response.json();
 };
+
+export const getProductById = async (productId) => {
+  const response = await fetch(`${GET_ALL_PRODUCTS_URL}/${productId}`, {
+    method: 'GET',
+  });
+  return response.json();
+};

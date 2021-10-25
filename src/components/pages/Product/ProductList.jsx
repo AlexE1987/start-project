@@ -5,7 +5,6 @@ import './Product.css';
 
 import { getAllProducts, updateProductInStock } from '../../../api/api';
 import { setAllproducts } from '../../../redux/actions/products';
-// import store from '../../../redux/store';
 
 const ProductList = ({ userRole }) => {
   const products = useSelector((store) => store.allProducts.products);
