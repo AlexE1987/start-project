@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { todoListReducer } from "./todoListReducer";
 
 export const reducers = combineReducers({
-  todoList: todoListReducer
+  todo: todoListReducer
 })
 
-type reducersState = ReturnType<typeof reducers>
+export type reducersState = ReturnType<typeof reducers>

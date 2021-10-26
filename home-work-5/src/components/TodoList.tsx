@@ -1,25 +1,30 @@
-import React, { FC } from 'react'
-import { useSelector } from 'react-redux'
-
-
-
+import React, { FC, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useTypedSelector } from '../hooks/useTypedSelector'
+import { fetchTodoList } from '../redux/actions/todoList'
 
 const TodoList: FC = () => {
-  interface RootState {
-    todoList: []
+
+const {todoList, error, loading} = useTypedSelector((store) => store.todo)
+const dispatch = useDispatch()
+
+useEffect(()=> {
+dispatch(fetchTodoList())
+},[dispatch])
+
+  if(loading) {
+    return <h1>Loading...</h1>
   }
-  
-  // TS infers type: (state: RootState) => boolean
-  const selectIsOn = (state: RootState) => state.todoList
-  
-  // TS infers `isOn` is boolean
-  const isOn = useSelector(selectIsOn)
-  console.log(isOn);
-  
+
+  if(error) {
+    return <h1>{error}</h1>
+  }
+
   return (
-    <div>
-      To-do
-    </div>
+    <ul>
+      {todoList.map(listItem =>
+      <li key={listItem.id}>{listItem.description}</li>)}
+    </ul>
   )
 }
 

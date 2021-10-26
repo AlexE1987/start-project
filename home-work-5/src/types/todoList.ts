@@ -9,7 +9,7 @@ interface IGetTodoListAction {
 };
 interface IGetTodoListSuccessAction {
   type: TodoListActionTypes.GET_TODO_LIST_SUCCESS,
-  payload: [] //! Generic!!!
+  payload: any[] //! Generic!!!
 };
 interface IGetTodoListErrorAction {
   type: TodoListActionTypes.GET_TODO_LIST_ERROR,
@@ -19,7 +19,7 @@ interface IGetTodoListErrorAction {
 export type ITodoListActions = IGetTodoListAction | IGetTodoListSuccessAction | IGetTodoListErrorAction;
 
 export interface ITodoListState {
-  todoList: [] //! Generic!!!;
+  todoList: any[] //! Generic!!!;
   loading: boolean;
   error: null | string
 };
