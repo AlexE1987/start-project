@@ -8,7 +8,6 @@ export const fetchTodoList = () => {
       const response = await fetch('http://localhost:3000/todo')
       .then((response) => response.json())
       .then((data) => {
-      console.log('333',data[0].description);
       return data
       })
       dispatch({type: TodoListActionTypes.GET_TODO_LIST_SUCCESS, payload: response})
