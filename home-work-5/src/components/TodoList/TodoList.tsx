@@ -1,47 +1,42 @@
 import './TodoList.css';
-
 import React, { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { fetchTodoList } from '../../redux/actions/todoList';
 
-import TodoInputContainer from './TodoInput/TodoInputContainer';
 import TodoItem from './TodoItem/TodoItem';
+import TodoInput from './TodoInput/TodoInput';
+import { IlistItem } from '../../types/todoListItem';
+import { addListItem } from '../../redux/actions/todoList';
 
 const TodoList: FC = () => {
-
-const {todoList, error, loading} = useTypedSelector((store) => store.todo);
+const todoList = useTypedSelector((store) => store.updateTodo.todoList);
 const dispatch = useDispatch();
 
-useEffect(()=> {
-dispatch(fetchTodoList())
-},[dispatch]);
+const sendTodoList = () => {
+  
+}
 
-  if(loading) {
-    return <h1>Loading...</h1>
-  };
-
-  if(error) {
-    return <h1>{error}</h1>
-  };
+const onAddListItem = (listItem: IlistItem) => {
+    listItem.id = todoList.length + 1;
+    dispatch(addListItem(listItem))
+}
 
   return (
     <div className="todo-list__wrapper">
       <div className="todo-list__container">
         <h3>My Todo List</h3>
-        <TodoInputContainer />
-        <ul className="todo-list">
-
-          {todoList.map((listItem) => 
-          <TodoItem 
-          key={listItem.id}
-          description={listItem.description}/>
-          )}
-
-        </ul>
+        <TodoInput addListItem={onAddListItem}/>
+          <ul className="todo-list">
+            {todoList.map((listItem) => 
+            <TodoItem 
+            key={listItem.id}
+            description={listItem.description}/>
+            )}
+          </ul>
       </div>
     </div>
   )
+
 }
 
 export default TodoList
