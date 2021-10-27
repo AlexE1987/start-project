@@ -1,10 +1,9 @@
-import React, {FC} from 'react'
+import './TodoInputContainer.css';
+import React, {FC} from 'react';
 
 const TodoInput: FC = () => {
   return (
-    <div>
-      <input type="text" />
-    </div>
+      <input className="todo-input" type="text" />
   )
 }
 

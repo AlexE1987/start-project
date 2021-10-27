@@ -5,7 +5,8 @@ import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { fetchTodoList } from '../../redux/actions/todoList';
 
-import TodoInput from './TodoInput/TodoInput';
+import TodoInputContainer from './TodoInput/TodoInputContainer';
+import TodoItem from './TodoItem/TodoItem';
 
 const TodoList: FC = () => {
 
@@ -27,11 +28,16 @@ dispatch(fetchTodoList())
   return (
     <div className="todo-list__wrapper">
       <div className="todo-list__container">
-        <h3>Todo List</h3>
-        <TodoInput />
+        <h3>My Todo List</h3>
+        <TodoInputContainer />
         <ul className="todo-list">
-          {todoList.map(listItem =>
-          <li className="list-item" key={listItem.id}>{listItem.description}</li>)}
+
+          {todoList.map((listItem) => 
+          <TodoItem 
+          key={listItem.id}
+          description={listItem.description}/>
+          )}
+
         </ul>
       </div>
     </div>
