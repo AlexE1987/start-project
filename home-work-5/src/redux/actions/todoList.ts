@@ -1,5 +1,6 @@
 import { Dispatch } from "redux"
 import { TodoListActionTypes, ITodoListActions } from "../../types/todoList"
+import { IlistItem } from "../../types/todoListItem";
 
 export const fetchTodoList = () => {
   return async (dispatch: Dispatch<ITodoListActions>) => {
@@ -15,5 +16,12 @@ export const fetchTodoList = () => {
       dispatch({type: TodoListActionTypes.GET_TODO_LIST_ERROR, payload: 'Error while downloading'});
     }
   }
-
 }
+
+
+export type Action = {type: 'ADD_LIST_ITEM', payload: IlistItem}
+
+
+export const addListItem = (listItem: IlistItem): Action => ({
+  type: 'ADD_LIST_ITEM', payload:listItem
+})

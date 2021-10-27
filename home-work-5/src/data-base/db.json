@@ -6,13 +6,6 @@
       "isInFavorite": false,
       "isComleted": false
       
-    },
-    {
-      "id": 2,
-      "description": "попить",
-      "isInFavorite": false,
-      "isComleted": false
-      
-    }
+    }    
     ]
 }
