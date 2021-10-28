@@ -17,7 +17,7 @@ export const todoListUpdateReducer = (state:todoListState = initialState, action
       return {
         ...state, todoList: action.payload
       };
-    case TodoListTypes.INFAVORITE_LIST_ITEM:
+    case TodoListTypes.INFAVORITE_LIST_ITEM:      
       return {
         ...state, todoList: action.payload
       }

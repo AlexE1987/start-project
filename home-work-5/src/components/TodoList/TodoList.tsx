@@ -18,7 +18,6 @@ const onAddListItem = (listItem: IlistItem) => {
 };
 
 
-
   return (
     <div className="todo-list__wrapper">
       <div className="todo-list__container">
@@ -30,15 +29,10 @@ const onAddListItem = (listItem: IlistItem) => {
             <TodoItem 
             key={listItem.id}
             id={listItem.id}
-            description={listItem.description}
-            isInfavorite={listItem.isInfavorite}
-            isCompleted={listItem.isCompleted}
-          
-            />
-
-
-            )}
+            description={listItem.description}          
+            />)}
           </ul>
+
       </div>
     </div>
   )
