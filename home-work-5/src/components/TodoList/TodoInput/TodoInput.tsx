@@ -1,6 +1,6 @@
 import './TodoInput.css';
 import React, {ChangeEvent, FC, useState} from 'react';
-import { IlistItem } from '../../../types/todoListItem';
+import { IlistItem } from '../../../types/todoListIt2';
 
 interface ITodolistProps {
   addListItem(item:IlistItem): void;

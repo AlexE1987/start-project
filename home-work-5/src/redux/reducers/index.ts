@@ -1,10 +1,9 @@
 import { combineReducers } from "redux";
-import { todoListReducer } from "./todoListReducer";
-import { todoListUpdateReducer } from "./todoListUpdateReducer";
+import { todoListUpdateReducer } from "./todoListReducer2";
 
-export const reducers = combineReducers({
-  todo: todoListReducer,
-  updateTodo: todoListUpdateReducer,
-})
+export const rootReducer = combineReducers({
+  // todo: todoListReducer,
+  updateTodoList: todoListUpdateReducer,
+});
 
-export type reducersState = ReturnType<typeof reducers>
+export type reducersState = ReturnType<typeof rootReducer>

@@ -1,11 +1,13 @@
 {
   "todo": [
-    {
-      "id": 1,
-      "description": "поесть",
-      "isInFavorite": false,
-      "isComleted": false
-      
-    }    
+    [
+      {
+        "id": 1,
+        "description": "11",
+        "isInFavorite": false,
+        "isComleted": false
+      }
     ]
+   
+  ]
 }
