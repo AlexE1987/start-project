@@ -1,16 +1,20 @@
 import './TodoList.css';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 import TodoItem from './TodoItem/TodoItem';
 import TodoInput from './TodoInput/TodoInput';
 import { IlistItem } from '../../types/todoListIt2';
-import { addListItem } from '../../redux/actions/todoList';
+import { addListItem, fetchTodoList } from '../../redux/actions/todoList';
 
 const TodoList: FC = () => {
 const todoList = useTypedSelector((store) => store.updateTodoList.todoList);
 const dispatch = useDispatch();
+
+useEffect(()=> {
+  dispatch(fetchTodoList())
+  },[dispatch])
 
 const onAddListItem = (listItem: IlistItem) => {
   listItem.id = todoList.length + 1;

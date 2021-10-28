@@ -9,15 +9,12 @@ import { inFavoriteListItem, removeListItem } from '../../../redux/actions/todoL
 type ITodoItemProps = {
   id: number,
   description: string,
-  // isInfavorite: boolean,
-  // isCompleted: boolean,
 }
 
 const TodoItem: FC<ITodoItemProps> = ({description, id}) => {
   const [isInFavorite, setIsInFavorite] = useState<boolean>(false);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [isEdit, setIsEdit] = useState<boolean>(false);
-
 
   const todoList = useTypedSelector((store) => store.updateTodoList.todoList);
   const dispatch = useDispatch();
@@ -29,7 +26,6 @@ const TodoItem: FC<ITodoItemProps> = ({description, id}) => {
     dispatch(removeListItem(newTodo))
   };
 
-
   const toFavorite = (id: number) => {
     let newTodo = [...todoList];    
     newTodo[id-1].isInFavorite = !isInFavorite; 
@@ -37,7 +33,6 @@ const TodoItem: FC<ITodoItemProps> = ({description, id}) => {
     dispatch(inFavoriteListItem(newTodo))
   };
   
-
   return (
     <li  className="todo-item">
       {isCompleted &&  
@@ -49,9 +44,9 @@ const TodoItem: FC<ITodoItemProps> = ({description, id}) => {
       {isInFavorite && 
       <img onClick={()=>toFavorite(id)} className="img-favorite" src="/icons/star.ico" alt="In favorite" 
       />}
-      
+
       <TodoItemButton/>
-      <TodoItemMenu
+      <TodoItemMenu //!PORTAL
         id={id}
         removeItem={()=>removeItem(id)} 
         toFavorite={()=>toFavorite(id)} 

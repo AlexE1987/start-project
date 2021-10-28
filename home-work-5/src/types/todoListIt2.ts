@@ -3,6 +3,7 @@ export enum TodoListTypes {
   REMOVE_LIST_ITEM = 'REMOVE_LIST_ITEM',
   INFAVORITE_LIST_ITEM = 'INFAVORITE_LIST_ITEM',
   SAVE_TODO_LIST = 'SAVE_TODO_LIST',
+  FETCH_TODO_LIST = 'FETCH_TODO_LIST',
 };
 
 interface IAddListItem {
@@ -25,7 +26,12 @@ interface IInFavorite {
   payload: any[] //! TYPE IT
 }
 
-export type ITodoListActions = IAddListItem | ISaveTodoList | IRemoveListItem | IInFavorite;
+interface IFetchTodoList {
+  type: TodoListTypes.FETCH_TODO_LIST,
+  payload: any[] //! TYPE IT
+}
+
+export type ITodoListActions = IAddListItem | ISaveTodoList | IRemoveListItem | IInFavorite | IFetchTodoList;
 
 export interface IlistItem {
   id: number,
