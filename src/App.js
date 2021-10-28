@@ -1,25 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import Main from './components/Main/Main';
+import Header from './components/Header/Header';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from 'react';
+
+export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      headerTitle: 'Заполните анкету',
+    };
+  }
+
+  renameHeaderTitle = (name, lastName) => {
+    let newHeaderTitle = `${name} ${lastName}`;
+    this.setState(() => ({
+      headerTitle: newHeaderTitle,
+    }));
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <Header
+          headerTitle={this.state.headerTitle}
+          headerTitleChanged={this.state.headerTitleChanged}
+        />
+        <Main renameHeaderTitle={this.renameHeaderTitle} />
+      </div>
+    );
+  }
 }
 
 export default App;
