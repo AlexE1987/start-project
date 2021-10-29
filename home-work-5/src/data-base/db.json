@@ -4,13 +4,15 @@
       "id": 1,
       "description": "11",
       "isInFavorite": false,
-      "isCompleted": false
+      "isCompleted": false,
+      "isEdit": false
     },
     {
       "id": 2,
       "description": "22",
       "isInFavorite": false,
-      "isCompleted": false
+      "isCompleted": false,
+      "isEdit": false
     }
   ]
 }

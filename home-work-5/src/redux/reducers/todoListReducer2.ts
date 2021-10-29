@@ -9,6 +9,10 @@ const initialState:todoListState = {
 
 export const todoListUpdateReducer = (state:todoListState = initialState, action: ITodoListActions) => {
   switch(action.type) {
+    case TodoListTypes.FETCH_TODO_LIST:      
+    return {
+        ...state, todoList: [...action.payload, ...state.todoList]
+      };
 
     case TodoListTypes.ADD_LIST_ITEM:
       return {
@@ -29,7 +33,6 @@ export const todoListUpdateReducer = (state:todoListState = initialState, action
         ...state, todoList: todoToFavorite
       };
 
-
     case TodoListTypes.COMLETED_LIST_ITEM:
       const todoToComlete = [...state.todoList];    
       todoToComlete[action.payload - 1].isCompleted = !todoToComlete[action.payload - 1].isCompleted;
@@ -37,14 +40,23 @@ export const todoListUpdateReducer = (state:todoListState = initialState, action
         ...state, todoList: todoToComlete
       };
 
+    case TodoListTypes.EDIT_LIST_ITEM:
+      const todoToEdit = [...state.todoList];
+      todoToEdit[action.payload - 1].isEdit = !todoToEdit[action.payload - 1].isEdit;
+      return {
+        ...state, todoList: todoToEdit
+      };
+    
+    case TodoListTypes.UPDAT_DESCRIPTION_LIST_ITEM:
+      return {
+        ...state, todoList: action.payload
+      }
+
     // case TodoListTypes.SAVE_TODO_LIST:      
     //   return {
     //     ...state, todoList: [...action.payload, ...state.todoList]
     //   };
-    case TodoListTypes.FETCH_TODO_LIST:      
-      return {
-        ...state, todoList: [...action.payload, ...state.todoList]
-      };
+    
     default:
       return state
   }

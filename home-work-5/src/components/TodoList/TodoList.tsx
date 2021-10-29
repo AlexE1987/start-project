@@ -6,7 +6,7 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import TodoItem from './TodoItem/TodoItem';
 import TodoInput from './TodoInput/TodoInput';
 import { IlistItem } from '../../types/todoListIt2';
-import { addListItem, fetchTodoList, testSave } from '../../redux/actions/todoList';
+import { addListItem, fetchTodoList, testSave } from '../../redux/actions/todoListActions';
 
 const TodoList: FC = () => {
 const todoList = useTypedSelector((store) => store.updateTodoList.todoList);
@@ -36,7 +36,8 @@ const onAddListItem = (listItem: IlistItem) => {
             id={listItem.id}
             description={listItem.description}         
             isCompleted={listItem.isCompleted}         
-            isInFavorite={listItem.isInFavorite}         
+            isInFavorite={listItem.isInFavorite}
+            isEdit={listItem.isEdit}
             />)}
           </ul>
 

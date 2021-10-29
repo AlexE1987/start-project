@@ -12,6 +12,7 @@
 .img-complete {
   width: 12px;
   height: 12px;
+  cursor: pointer;
 }
 .img-menu {
   width: 15px;

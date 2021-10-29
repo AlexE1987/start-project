@@ -14,7 +14,6 @@ export const  fetchTodoList = () => { //! TRY/CATCH
   }
 }
 
-
 export const addListItem = (listItem: IlistItem): ITodoListActions => ({
   type: TodoListTypes.ADD_LIST_ITEM, payload:listItem
 });
@@ -26,16 +25,18 @@ export const removeListItem = (id:number):ITodoListActions => ({
 export const inFavoriteListItem = (id: number):ITodoListActions => ({
   type: TodoListTypes.INFAVORITE_LIST_ITEM, payload:id
 });
-// export const inFavoriteListItem = (newList: any[]):ITodoListActions => ({
-//   type: TodoListTypes.INFAVORITE_LIST_ITEM, payload:newList
-// });
 
 export const isComletedListItem = (id: number):ITodoListActions => ({
   type: TodoListTypes.COMLETED_LIST_ITEM, payload: id
 });
-// export const isComletedListItem = (newList: any[]):ITodoListActions => ({
-//   type: TodoListTypes.COMLETED_LIST_ITEM, payload: newList
-// });
+
+export const isEditListItem = (id: number):ITodoListActions => ({
+  type: TodoListTypes.EDIT_LIST_ITEM, payload: id
+});
+
+export const updateDescriptionListItem = (newArray: any[] ):ITodoListActions => ({
+  type: TodoListTypes.UPDAT_DESCRIPTION_LIST_ITEM, payload: newArray 
+});
 
 //! TEST need to refresh all data
 export const testSave = async (list:any) => {

@@ -29,7 +29,7 @@ const onaddListItem = () => {
 return (
   <div className="todo-input__container">
     <input onChange={getInputValue}  value={newListItem.description} className="todo-input" type="text" />
-    <button onClick={onaddListItem} className="todo-button_input">ADD</button>
+    <button onClick={onaddListItem}  className="todo-button_input">ADD</button>
   </div>
 )
 }
