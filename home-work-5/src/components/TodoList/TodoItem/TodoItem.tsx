@@ -4,33 +4,37 @@ import TodoItemButton from './TodoItemButton';
 import TodoItemMenu from '../TodoItemMenu/TodoItemMenu';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
-import { inFavoriteListItem, removeListItem } from '../../../redux/actions/todoList';
+import { inFavoriteListItem, isComletedListItem, removeListItem } from '../../../redux/actions/todoList';
 
 type ITodoItemProps = {
   id: number,
   description: string,
+  isCompleted: boolean,
+  isInFavorite: boolean,
 }
 
-const TodoItem: FC<ITodoItemProps> = ({description, id}) => {
-  const [isInFavorite, setIsInFavorite] = useState<boolean>(false);
-  const [isCompleted, setIsCompleted] = useState<boolean>(false);
-  const [isEdit, setIsEdit] = useState<boolean>(false);
-
+const TodoItem: FC<ITodoItemProps> = ({description, id, isCompleted, isInFavorite}) => {
   const todoList = useTypedSelector((store) => store.updateTodoList.todoList);
   const dispatch = useDispatch();
 
   const removeItem = (id: number) => {
-    let newTodo = [...todoList];
-    newTodo = newTodo.filter((item => item.id !== id))
-    newTodo.map((item, index)=> item.id = index + 1)
-    dispatch(removeListItem(newTodo))
+    dispatch(removeListItem(id))
   };
 
+  // const toComplete = (id: number) => {
+    
+  //   dispatch(isComletedListItem(id))
+  // }
+  const toComplete = (id: number) => {
+    // const newTodo = [...todoList];    
+    // newTodo[id-1].isCompleted = !isCompleted; 
+    dispatch(isComletedListItem(id))
+  }
+
   const toFavorite = (id: number) => {
-    let newTodo = [...todoList];    
-    newTodo[id-1].isInFavorite = !isInFavorite; 
-    setIsInFavorite(!isInFavorite)
-    dispatch(inFavoriteListItem(newTodo))
+    // const newTodo2 = [...todoList];    
+    // newTodo2[id-1].isInFavorite = !isInFavorite;
+    dispatch(inFavoriteListItem(id))
   };
   
   return (
@@ -49,7 +53,8 @@ const TodoItem: FC<ITodoItemProps> = ({description, id}) => {
       <TodoItemMenu //!PORTAL
         id={id}
         removeItem={()=>removeItem(id)} 
-        toFavorite={()=>toFavorite(id)} 
+        toFavorite={()=>toFavorite(id)}
+        toComplete={()=>toComplete(id)}
        />
     </li>
   )

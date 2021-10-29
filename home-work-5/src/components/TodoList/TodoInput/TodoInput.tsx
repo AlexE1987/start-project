@@ -10,11 +10,11 @@ const initialState:IlistItem = {
     id: 0,
     description: '',
     isInFavorite: false,
-    isComleted: false,
+    isCompleted: false,
+    isEdit: false,
 };
 
 const TodoInput: FC<ITodolistProps> = ({addListItem}) => {
-
 const [newListItem, setNewListItem] = useState(initialState);
 
 const getInputValue = (event: ChangeEvent<HTMLInputElement>) => {
