@@ -1,6 +1,6 @@
 import { IlistItem } from "../types/todoListIt2"
 
-export const sendData = async (id:number, data: IlistItem ) => {
+export const putData = async (id:number, data: IlistItem ) => {
 
   await fetch(`http://localhost:3000/todo/${id}`, {
       method: 'PUT',
@@ -9,4 +9,14 @@ export const sendData = async (id:number, data: IlistItem ) => {
       },
       body: JSON.stringify(data),
     })
+};
+
+export const postData = async (data: IlistItem) => {
+  await fetch('http://localhost:3000/todo', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  });
 }

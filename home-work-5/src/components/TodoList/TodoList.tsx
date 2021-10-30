@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { IlistItem } from '../../types/todoListIt2';
 import { addListItem, fetchTodoList } from '../../redux/actions/todoListActions';
+import { postData } from '../../api/todoListApi';
 
 import TodoItem from './TodoItem/TodoItem';
 import TodoInput from './TodoInput/TodoInput';
@@ -16,10 +17,11 @@ useEffect(()=> {
   dispatch(fetchTodoList())
   },[dispatch])
 
-const onAddListItem = (listItem: IlistItem) => {
-  const newId = Math.max(...todoList.map((todoItem) => todoItem.id)) + 1
+const onAddListItem = async (listItem: IlistItem) => {
+  const newId = Math.max(...todoList.map((todoItem) => todoItem.id)) + 1;
   listItem.id = newId;
   dispatch(addListItem(listItem));
+  postData(listItem)
 };
 
   return (

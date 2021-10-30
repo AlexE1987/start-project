@@ -3,7 +3,7 @@ import {FC, useState, KeyboardEvent, ChangeEvent } from 'react';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
 import { inFavoriteListItem, isComletedListItem, isEditListItem, removeListItem, updateDescriptionListItem } from '../../../redux/actions/todoListActions';
-import { sendData } from '../../../api/todoListApi';
+import { putData } from '../../../api/todoListApi';
 import { dataToSend } from '../../../helpers/todoListHelpers';
 import TodoItemButton from './TodoItemButton';
 import TodoItemMenu from '../TodoItemMenu/TodoItemMenu';
@@ -30,12 +30,12 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
 
   const toComplete = async (id: number) => {
     dispatch(isComletedListItem(id));
-    sendData(id, dataToSend(id, todoList));
+    putData(id, dataToSend(id, todoList));
   }
 
   const toFavorite = (id: number) => {
     dispatch(inFavoriteListItem(id));
-    sendData(id, dataToSend(id, todoList));
+    putData(id, dataToSend(id, todoList));
   };
 
   const toEdit = (id: number) => {
@@ -53,7 +53,7 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
       updatedDescriptionTodo[index].description = newDescription;
       dispatch(updateDescriptionListItem(updatedDescriptionTodo));
       dispatch(isEditListItem(id));
-      sendData(id, dataToSend(id, todoList));
+      putData(id, dataToSend(id, todoList));
     }
   };
 
