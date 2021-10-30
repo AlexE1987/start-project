@@ -1,12 +1,12 @@
 import './TodoList.css';
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { IlistItem } from '../../types/todoListIt2';
+import { addListItem, fetchTodoList } from '../../redux/actions/todoListActions';
 
 import TodoItem from './TodoItem/TodoItem';
 import TodoInput from './TodoInput/TodoInput';
-import { IlistItem } from '../../types/todoListIt2';
-import { addListItem, fetchTodoList, testSave } from '../../redux/actions/todoListActions';
 
 const TodoList: FC = () => {
 const todoList = useTypedSelector((store) => store.updateTodoList.todoList);
@@ -17,11 +17,10 @@ useEffect(()=> {
   },[dispatch])
 
 const onAddListItem = (listItem: IlistItem) => {
-  listItem.id = todoList.length + 1;
+  const newId = Math.max(...todoList.map((todoItem) => todoItem.id)) + 1
+  listItem.id = newId;
   dispatch(addListItem(listItem));
-  // testSave(todoList)
 };
-
 
   return (
     <div className="todo-list__wrapper">
@@ -40,11 +39,9 @@ const onAddListItem = (listItem: IlistItem) => {
             isEdit={listItem.isEdit}
             />)}
           </ul>
-
       </div>
     </div>
   )
-
 }
 
 export default TodoList

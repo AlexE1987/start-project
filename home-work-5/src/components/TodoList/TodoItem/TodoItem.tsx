@@ -1,10 +1,12 @@
 import './TodoItem.css';
-import React, {FC, useState, KeyboardEvent, ChangeEvent } from 'react';
-import TodoItemButton from './TodoItemButton';
-import TodoItemMenu from '../TodoItemMenu/TodoItemMenu';
+import {FC, useState, KeyboardEvent, ChangeEvent } from 'react';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
 import { inFavoriteListItem, isComletedListItem, isEditListItem, removeListItem, updateDescriptionListItem } from '../../../redux/actions/todoListActions';
+import { sendData } from '../../../api/todoListApi';
+import { dataToSend } from '../../../helpers/todoListHelpers';
+import TodoItemButton from './TodoItemButton';
+import TodoItemMenu from '../TodoItemMenu/TodoItemMenu';
 
 type ITodoItemProps = {
   id: number,
@@ -19,16 +21,21 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
   const todoList = useTypedSelector((store) => store.updateTodoList.todoList);
   const dispatch = useDispatch();
 
-  const removeItem = (id: number) => {
+  const removeItem = async (id: number) => {
     dispatch(removeListItem(id));
+    await fetch(`http://localhost:3000/todo/${id}`, {
+         method: 'DELETE'
+       })
   };
 
-  const toComplete = (id: number) => {
+  const toComplete = async (id: number) => {
     dispatch(isComletedListItem(id));
+    sendData(id, dataToSend(id, todoList));
   }
 
   const toFavorite = (id: number) => {
     dispatch(inFavoriteListItem(id));
+    sendData(id, dataToSend(id, todoList));
   };
 
   const toEdit = (id: number) => {
@@ -41,10 +48,12 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
 
   const onEditKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     const updatedDescriptionTodo = [...todoList]
+    const index = updatedDescriptionTodo.findIndex((item) => item.id === id)
     if (event.code === "Enter") {
-      updatedDescriptionTodo[id-1].description = newDescription;
+      updatedDescriptionTodo[index].description = newDescription;
       dispatch(updateDescriptionListItem(updatedDescriptionTodo));
       dispatch(isEditListItem(id));
+      sendData(id, dataToSend(id, todoList));
     }
   };
 

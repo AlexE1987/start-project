@@ -1,9 +1,5 @@
 import { Dispatch } from "redux"
-import { ThunkAction } from "redux-thunk";
-// import { TodoListActionTypes, ITodoListActions } from "../../types/todoList"
 import { IlistItem, TodoListTypes, ITodoListActions } from "../../types/todoListIt2";
-import { reducersState } from "../reducers";
-
 
 export const  fetchTodoList = () => { //! TRY/CATCH
   return async (dispatch: Dispatch<ITodoListActions>) => {
@@ -35,7 +31,7 @@ export const isEditListItem = (id: number):ITodoListActions => ({
 });
 
 export const updateDescriptionListItem = (newArray: any[] ):ITodoListActions => ({
-  type: TodoListTypes.UPDAT_DESCRIPTION_LIST_ITEM, payload: newArray 
+  type: TodoListTypes.UPDATE_DESCRIPTION_LIST_ITEM, payload: newArray 
 });
 
 //! TEST need to refresh all data
