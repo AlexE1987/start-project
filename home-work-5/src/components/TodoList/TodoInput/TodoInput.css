@@ -1,11 +1,14 @@
-.todo-input__container {
+.todo-input__wrapper {
   display: flex;
   width: 90%;
   justify-content: center;
 }
+.todo-input__container {
+  width: 70%;
+}
 
 .todo-input {
-  width: 70%;
+  width: 100%;
 }
 
 .todo-button_input {
@@ -18,4 +21,5 @@
   border-radius: 2px;
   background-color: #5b3e96;
   cursor: pointer;
+  height: 30px;
 }

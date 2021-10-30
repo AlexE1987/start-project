@@ -1,5 +1,5 @@
 import './TodoItem.css';
-import {FC, useState, KeyboardEvent, ChangeEvent } from 'react';
+import {FC, useState, KeyboardEvent, ChangeEvent, useEffect } from 'react';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
 import { inFavoriteListItem, isComletedListItem, isEditListItem, removeListItem, updateDescriptionListItem } from '../../../redux/actions/todoListActions';
@@ -18,8 +18,19 @@ type ITodoItemProps = {
 
 const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorite, isEdit}) => {
   const [newDescription, setNewDescription] = useState(description);
+  const [inputError, setInputError] = useState<string | boolean>('');
   const todoList = useTypedSelector((store) => store.updateTodoList.todoList);
   const dispatch = useDispatch();
+  
+  useEffect(()=> {
+    validate();
+  })
+
+  const validate = () => {
+    if (newDescription.trim().length > 160) {setInputError('too much symbols, max 160');} 
+    else {setInputError('');}
+    if(newDescription.trim() === '') {setInputError(true)}
+  };
 
   const removeItem = async (id: number) => {
     dispatch(removeListItem(id));
@@ -47,6 +58,7 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
   };
 
   const onEditKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if(Boolean(inputError)) {return}
     const updatedDescriptionTodo = [...todoList]
     const index = updatedDescriptionTodo.findIndex((item) => item.id === id)
     if (event.code === "Enter") {
@@ -62,8 +74,18 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
       {isCompleted &&  
       <img onClick={()=>toComplete(id)} className="img-complete" src="/icons/completed.ico" alt="Comleted" 
       />}
+
       {isEdit 
-        ? <input onKeyDown={onEditKeyDown} value={newDescription} onChange={getEditValue} autoFocus type="text" />
+        ? <div>
+            <input 
+            autoFocus
+            onKeyDown={onEditKeyDown} 
+            value={newDescription} 
+            onChange={getEditValue} 
+            type="text" 
+            />
+            <p>{inputError}</p>
+          </div>
         : <p>{description}</p>
       }
 

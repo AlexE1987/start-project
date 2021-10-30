@@ -1,5 +1,5 @@
 import './TodoInput.css';
-import React, {ChangeEvent, FC, useState} from 'react';
+import React, {ChangeEvent, FC, useEffect, useState} from 'react';
 import { IlistItem } from '../../../types/todoListIt2';
 
 interface ITodolistProps {
@@ -16,10 +16,22 @@ const initialState:IlistItem = {
 
 const TodoInput: FC<ITodolistProps> = ({addListItem}) => {
 const [newListItem, setNewListItem] = useState(initialState);
+const [inputError, setInputError] = useState<string | boolean>('');
+
+useEffect(()=> {
+  validate()
+})
+
+const validate = () => {
+  if (newListItem.description.trim().length > 160) {setInputError('too much symbols, max 160');} 
+  else {setInputError('');}
+  if(newListItem.description.trim() === '') {setInputError(true)}
+};
 
 const getInputValue = (event: ChangeEvent<HTMLInputElement>) => {
   setNewListItem((prevState)=> ({...prevState, description: event.target.value}));
 };
+
 
 const onaddListItem = () => {
   addListItem(newListItem);
@@ -27,9 +39,12 @@ const onaddListItem = () => {
 };
 
 return (
-  <div className="todo-input__container">
-    <input onChange={getInputValue}  value={newListItem.description} className="todo-input" type="text" />
-    <button onClick={onaddListItem}  className="todo-button_input">ADD</button>
+  <div className="todo-input__wrapper">
+    <div className="todo-input__container">
+      <input  onChange={getInputValue}  value={newListItem.description} className="todo-input" type="text" />
+      <p>{inputError}</p>
+    </div>
+    <button disabled={Boolean(inputError)} onClick={onaddListItem}  className="todo-button_input">ADD</button>
   </div>
 )
 }
