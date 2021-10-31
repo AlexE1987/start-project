@@ -33,7 +33,10 @@
 
 .modal-remove__content {
 }
-
+.modal-remove__description {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 .modal-remove-btn__container {
   margin-top: 6px;
   display: flex;

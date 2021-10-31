@@ -3,8 +3,8 @@
     {
       "id": 16,
       "description": "1qqqqsdfsasdfsdasdfsssfsdf",
-      "isInFavorite": false,
-      "isCompleted": false,
+      "isInFavorite": true,
+      "isCompleted": true,
       "isEdit": false
     },
     {
@@ -45,6 +45,13 @@
     {
       "id": 25,
       "description": "11222",
+      "isInFavorite": false,
+      "isCompleted": false,
+      "isEdit": false
+    },
+    {
+      "id": 26,
+      "description": "222222222222222222222222222222222222222222222222",
       "isInFavorite": false,
       "isCompleted": false,
       "isEdit": false

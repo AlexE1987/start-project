@@ -44,7 +44,7 @@ return (
   <div className="todo-input__wrapper">
     <div className="todo-input__container">
       <input  onChange={getInputValue}  value={newListItem.description} className="todo-input" type="text" />
-      <p>{inputError}</p>
+      <p className="error" >{inputError}</p>
     </div>
     <button disabled={Boolean(inputError)} onClick={onaddListItem}  className="todo-button_input">ADD</button>
   </div>

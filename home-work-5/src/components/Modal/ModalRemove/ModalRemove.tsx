@@ -18,7 +18,7 @@ const ModalRemove:FC<IModalRemoveProps> = ({id, hideModalRemove, description, to
         <button className="modal-remove-btn__close" onClick={toggleModalRemove}>X</button>
         <div className="modal-remove__content">
           <h3>Are you sure you want to delete the task?</h3>
-          <p>{description}</p>
+          <p className="modal-remove__description">{description}</p>
           <p>Date of creation</p>
         </div>
         <div className="modal-remove-btn__container">
