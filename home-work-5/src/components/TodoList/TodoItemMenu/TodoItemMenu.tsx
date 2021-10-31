@@ -20,7 +20,7 @@ const TodoItemMenu: FC<ITodoMenuProps> = ({removeItem, toFavorite, toComplete , 
       </button>
       <button onClick={() =>toComplete(id)} className="menu-btn">
         <img className="menu-img" src="/icons/completed.ico" alt="to comlete" />
-        <p>To comleted</p> 
+        <p>To completed</p> 
       </button>
       <button onClick={() =>toEdit(id)} className="menu-btn">
         <img className="menu-img" src="/icons/edit.svg" alt="to edit" />

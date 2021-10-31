@@ -2,9 +2,9 @@
   "todo": [
     {
       "id": 16,
-      "description": "1qqqqsdfs",
-      "isInFavorite": false,
-      "isCompleted": false,
+      "description": "1qqqqsdfsasdfsd",
+      "isInFavorite": true,
+      "isCompleted": true,
       "isEdit": false
     },
     {
@@ -22,16 +22,9 @@
       "isEdit": false
     },
     {
-      "id": 19,
-      "description": "33",
-      "isInFavorite": false,
-      "isCompleted": false,
-      "isEdit": false
-    },
-    {
       "id": 20,
       "description": "55",
-      "isInFavorite": false,
+      "isInFavorite": true,
       "isCompleted": false,
       "isEdit": false
     },
@@ -50,43 +43,8 @@
       "isEdit": false
     },
     {
-      "id": 23,
-      "description": "4",
-      "isInFavorite": false,
-      "isCompleted": false,
-      "isEdit": false
-    },
-    {
       "id": 24,
       "description": "44",
-      "isInFavorite": false,
-      "isCompleted": false,
-      "isEdit": false
-    },
-    {
-      "id": 25,
-      "description": "5",
-      "isInFavorite": false,
-      "isCompleted": false,
-      "isEdit": false
-    },
-    {
-      "id": 26,
-      "description": "6",
-      "isInFavorite": false,
-      "isCompleted": false,
-      "isEdit": false
-    },
-    {
-      "id": 27,
-      "description": "444",
-      "isInFavorite": false,
-      "isCompleted": false,
-      "isEdit": false
-    },
-    {
-      "id": 28,
-      "description": "55",
       "isInFavorite": false,
       "isCompleted": false,
       "isEdit": false

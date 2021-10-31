@@ -90,6 +90,7 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
         ? <div>
             <input 
             autoFocus
+            onBlur={() => dispatch(isEditListItem(id))}
             onKeyDown={onEditKeyDown} 
             value={newDescription} 
             onChange={getEditValue} 
@@ -105,7 +106,6 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
       />}
 
       <TodoItemButton toggleModal={toggleModal}/> 
-      {/* Click  */}
 
       <ModalMenuTodo hideModal={hideModal} toggleModal={toggleModal}>
         <TodoItemMenu
