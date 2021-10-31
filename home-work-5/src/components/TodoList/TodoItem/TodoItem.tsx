@@ -7,6 +7,7 @@ import { putData } from '../../../api/todoListApi';
 import { dataToSend } from '../../../helpers/todoListHelpers';
 import TodoItemButton from './TodoItemButton';
 import TodoItemMenu from '../TodoItemMenu/TodoItemMenu';
+import ModalMenuTodo from '../../Modal/ModalMenuTodo';
 
 type ITodoItemProps = {
   id: number,
@@ -19,12 +20,12 @@ type ITodoItemProps = {
 const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorite, isEdit}) => {
   const [newDescription, setNewDescription] = useState(description);
   const [inputError, setInputError] = useState<string | boolean>('');
+  const [hideModal, setHideModal] = useState(true);
+
   const todoList = useTypedSelector((store) => store.updateTodoList.todoList);
   const dispatch = useDispatch();
   
-  useEffect(()=> {
-    validate();
-  })
+  useEffect(()=> {validate()});
 
   const validate = () => {
     if (newDescription.trim().length > 160) {
@@ -34,26 +35,34 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
     if(newDescription.trim() === '') {setInputError(true)}
   };
 
+  const toggleModal = ():void => {
+    setHideModal(!hideModal)
+  }
+
   const removeItem = async (id: number) => {
     dispatch(removeListItem(id));
     await fetch(`http://localhost:3000/todo/${id}`, {
          method: 'DELETE'
-       })
+       });
+       
   };
 
   const toComplete = async (id: number) => {
     dispatch(isComletedListItem(id));
     putData(id, dataToSend(id, todoList));
-  }
+    setHideModal(true);
+  };
 
   const toFavorite = (id: number) => {
     dispatch(inFavoriteListItem(id));
     putData(id, dataToSend(id, todoList));
+    setHideModal(true);
   };
 
   const toEdit = (id: number) => {
     dispatch(isEditListItem(id));
-  }
+    setHideModal(true);
+  };
 
   const getEditValue = (event: ChangeEvent<HTMLInputElement>) => {
     setNewDescription(event.target.value);
@@ -95,14 +104,20 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
       <img onClick={()=>toFavorite(id)} className="img-favorite" src="/icons/star.ico" alt="In favorite" 
       />}
 
-      <TodoItemButton/>
-      <TodoItemMenu //!PORTAL
-        id={id}
-        removeItem={()=>removeItem(id)} 
-        toFavorite={()=>toFavorite(id)}
-        toComplete={()=>toComplete(id)}
-        toEdit={()=>toEdit(id)}
-       />
+      <TodoItemButton toggleModal={toggleModal}/> 
+      {/* Click  */}
+
+      <ModalMenuTodo hideModal={hideModal} toggleModal={toggleModal}>
+        <TodoItemMenu
+          id={id}
+          hideModal={hideModal}
+          removeItem={()=>removeItem(id)} 
+          toFavorite={()=>toFavorite(id)}
+          toComplete={()=>toComplete(id)}
+          toEdit={()=>toEdit(id)}
+          />
+      </ModalMenuTodo>
+
     </li>
   )
 }
