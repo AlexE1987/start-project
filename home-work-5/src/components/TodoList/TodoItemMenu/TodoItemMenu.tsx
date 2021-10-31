@@ -3,17 +3,17 @@ import {FC} from 'react'
 
 type ITodoMenuProps = {
   id: number,
-  hideModal: boolean,
-  removeItem: (id: number) =>void,
+  hideModalMenu: boolean,
   toFavorite: (id: number) =>void,
   toComplete: (id: number) =>void,
   toEdit: (id: number) =>void,
+  toggleModalRemove: () => void,
 }
 
-const TodoItemMenu: FC<ITodoMenuProps> = ({removeItem, toFavorite, toComplete , toEdit, id, hideModal}) => {
+const TodoItemMenu: FC<ITodoMenuProps> = ({toggleModalRemove, toFavorite,
+                                          toComplete , toEdit, id, hideModalMenu}) => {
   return (
-    // <div className="item-menu_container">
-     <div className={hideModal ? "hide" : "item-menu_container"}>
+     <div className={hideModalMenu ? "hide" : "item-menu_container"}>
       <button onClick={() =>toFavorite(id)} className="menu-btn">
         <img className="menu-img" src="/icons/star.ico" alt="to favorites" />
         <p>To favorite</p> 
@@ -26,7 +26,7 @@ const TodoItemMenu: FC<ITodoMenuProps> = ({removeItem, toFavorite, toComplete , 
         <img className="menu-img" src="/icons/edit.svg" alt="to edit" />
         <p>To edit</p> 
       </button>
-      <button onClick={() =>removeItem(id)} className="menu-btn">
+      <button onClick={toggleModalRemove} className="menu-btn">
         <img className="menu-img" src="/icons/delete.svg" alt="to delete" />
         Remove
       </button>

@@ -7,7 +7,8 @@ import { putData } from '../../../api/todoListApi';
 import { dataToSend } from '../../../helpers/todoListHelpers';
 import TodoItemButton from './TodoItemButton';
 import TodoItemMenu from '../TodoItemMenu/TodoItemMenu';
-import ModalMenuTodo from '../../Modal/ModalMenuTodo';
+import ModalMenuTodo from '../../Modal/ModalMenuTodo/ModalMenuTodo';
+import ModalRemove from '../../Modal/ModalRemove/ModalRemove';
 
 type ITodoItemProps = {
   id: number,
@@ -20,7 +21,8 @@ type ITodoItemProps = {
 const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorite, isEdit}) => {
   const [newDescription, setNewDescription] = useState(description);
   const [inputError, setInputError] = useState<string | boolean>('');
-  const [hideModal, setHideModal] = useState(true);
+  const [hideModalMenu, setHideModalMenu] = useState(true);
+  const [hideModalRemove, setHideModalRemove] = useState(true);
 
   const todoList = useTypedSelector((store) => store.updateTodoList.todoList);
   const dispatch = useDispatch();
@@ -35,11 +37,15 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
     if(newDescription.trim() === '') {setInputError(true)}
   };
 
-  const toggleModal = ():void => {
-    setHideModal(!hideModal)
-  }
+  const toggleModalMenu = ():void => {
+    setHideModalMenu(!hideModalMenu)
+  };
 
-  const removeItem = async (id: number) => {
+  const toggleModalRemove = ():void => {
+    setHideModalRemove(!hideModalRemove)
+  };
+
+  const removeItem = async (id: number) => { //! REMOVE Reques to API
     dispatch(removeListItem(id));
     await fetch(`http://localhost:3000/todo/${id}`, {
          method: 'DELETE'
@@ -50,18 +56,18 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
   const toComplete = async (id: number) => {
     dispatch(isComletedListItem(id));
     putData(id, dataToSend(id, todoList));
-    setHideModal(true);
+    setHideModalMenu(true);
   };
 
   const toFavorite = (id: number) => {
     dispatch(inFavoriteListItem(id));
     putData(id, dataToSend(id, todoList));
-    setHideModal(true);
+    setHideModalMenu(true);
   };
 
   const toEdit = (id: number) => {
     dispatch(isEditListItem(id));
-    setHideModal(true);
+    setHideModalMenu(true);
   };
 
   const getEditValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -105,19 +111,25 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
       <img onClick={()=>toFavorite(id)} className="img-favorite" src="/icons/star.ico" alt="In favorite" 
       />}
 
-      <TodoItemButton toggleModal={toggleModal}/> 
+      <TodoItemButton toggleModalMenu={toggleModalMenu}/> 
 
-      <ModalMenuTodo hideModal={hideModal} toggleModal={toggleModal}>
+      <ModalMenuTodo hideModalMenu={hideModalMenu} toggleModalMenu={toggleModalMenu}>
         <TodoItemMenu
           id={id}
-          hideModal={hideModal}
-          removeItem={()=>removeItem(id)} 
+          hideModalMenu={hideModalMenu}
           toFavorite={()=>toFavorite(id)}
           toComplete={()=>toComplete(id)}
           toEdit={()=>toEdit(id)}
+          toggleModalRemove={toggleModalRemove}
           />
       </ModalMenuTodo>
-
+      <ModalRemove 
+          id={id}
+          description={description}
+          hideModalRemove={hideModalRemove} 
+          toggleModalRemove={toggleModalRemove}
+          removeItem={()=>removeItem(id)}
+          />
     </li>
   )
 }
