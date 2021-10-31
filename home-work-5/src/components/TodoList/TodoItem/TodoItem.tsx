@@ -27,7 +27,9 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
   })
 
   const validate = () => {
-    if (newDescription.trim().length > 160) {setInputError('too much symbols, max 160');} 
+    if (newDescription.trim().length > 160) {
+      setInputError(`Chatacter limit exceeded by ${newDescription.length - 160}`);
+    } 
     else {setInputError('');}
     if(newDescription.trim() === '') {setInputError(true)}
   };

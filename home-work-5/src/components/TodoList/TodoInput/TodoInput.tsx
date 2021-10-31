@@ -23,7 +23,9 @@ useEffect(()=> {
 })
 
 const validate = () => {
-  if (newListItem.description.trim().length > 160) {setInputError('too much symbols, max 160');} 
+  if (newListItem.description.trim().length > 160) {
+    setInputError(`Chatacter limit exceeded by ${newListItem.description.length - 160}`);
+  } 
   else {setInputError('');}
   if(newListItem.description.trim() === '') {setInputError(true)}
 };
