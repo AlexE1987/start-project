@@ -20,3 +20,9 @@ export const postData = async (data: IlistItem) => {
     body: JSON.stringify(data)
   });
 }
+
+export const deleteData = async (id: number) => {
+  await fetch(`http://localhost:3000/todo/${id}`, {
+    method: 'DELETE'
+  });
+}

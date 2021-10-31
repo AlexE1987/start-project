@@ -1,9 +1,8 @@
 import './TodoItem.css';
 import {FC, useState, KeyboardEvent, ChangeEvent, useEffect } from 'react';
-import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
 import { inFavoriteListItem, isComletedListItem, isEditListItem, removeListItem, updateDescriptionListItem } from '../../../redux/actions/todoListActions';
-import { putData } from '../../../api/todoListApi';
+import { deleteData, putData } from '../../../api/todoListApi';
 import { dataToSend } from '../../../helpers/todoListHelpers';
 import TodoItemButton from './TodoItemButton';
 import TodoItemMenu from '../TodoItemMenu/TodoItemMenu';
@@ -11,6 +10,7 @@ import ModalMenuTodo from '../../Modal/ModalMenuTodo/ModalMenuTodo';
 import ModalRemove from '../../Modal/ModalRemove/ModalRemove';
 
 type ITodoItemProps = {
+  todoList: any[],
   id: number,
   description: string,
   isCompleted: boolean,
@@ -18,15 +18,13 @@ type ITodoItemProps = {
   isEdit: string,
 }
 
-const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorite, isEdit}) => {
+const TodoItem: FC<ITodoItemProps> = ({todoList, id, description, isCompleted, isInFavorite, isEdit}) => {
   const [newDescription, setNewDescription] = useState(description);
   const [inputError, setInputError] = useState<string | boolean>('');
   const [hideModalMenu, setHideModalMenu] = useState(true);
   const [hideModalRemove, setHideModalRemove] = useState(true);
 
-  const todoList = useTypedSelector((store) => store.updateTodoList.todoList);
   const dispatch = useDispatch();
-  
   useEffect(()=> {validate()});
 
   const validate = () => {
@@ -45,12 +43,9 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
     setHideModalRemove(!hideModalRemove)
   };
 
-  const removeItem = async (id: number) => { //! REMOVE Reques to API
+  const removeItem = async (id: number) => { 
     dispatch(removeListItem(id));
-    await fetch(`http://localhost:3000/todo/${id}`, {
-         method: 'DELETE'
-       });
-       
+    deleteData(id);
   };
 
   const toComplete = async (id: number) => {
@@ -75,7 +70,7 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
   };
 
   const onEditKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if(Boolean(inputError)) {return}
+    if(Boolean(inputError)) return;
     const updatedDescriptionTodo = [...todoList]
     const index = updatedDescriptionTodo.findIndex((item) => item.id === id)
     if (event.code === "Enter") {
@@ -110,9 +105,8 @@ const TodoItem: FC<ITodoItemProps> = ({id, description, isCompleted, isInFavorit
       {isInFavorite && 
       <img onClick={()=>toFavorite(id)} className="img-favorite" src="/icons/star.ico" alt="In favorite" 
       />}
-
+      
       <TodoItemButton toggleModalMenu={toggleModalMenu}/> 
-
       <ModalMenuTodo hideModalMenu={hideModalMenu} toggleModalMenu={toggleModalMenu}>
         <TodoItemMenu
           id={id}

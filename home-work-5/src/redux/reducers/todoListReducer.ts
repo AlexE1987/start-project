@@ -1,11 +1,10 @@
-import { reducersState } from '.';
 import { ITodoListActions, TodoListTypes } from '../../types/todoListIt2';
 export interface todoListState {
-  todoList: any[] //! ANY
+  todoList: any[], //! ANY
 };
 
 const initialState:todoListState = {
-  todoList: []
+  todoList: [],
 };
 
 export const todoListUpdateReducer = (state:todoListState = initialState, action: ITodoListActions) => {
@@ -55,33 +54,7 @@ export const todoListUpdateReducer = (state:todoListState = initialState, action
         ...state, todoList: action.payload
       }
 
-    // case TodoListTypes.SAVE_TODO_LIST:      
-    //   return {
-    //     ...state, todoList: [...action.payload, ...state.todoList]
-    //   };
-    
     default:
       return state
   }
 };
-
-export const saveTodoList = () => async (dipatch: any, getState: any) => {
-  // const todoList = getState() as reducersState ;
-  const todoList = {
-    id: 3,
-    description: "22332",
-    isInFavorite: true,
-    isCompleted: false,
-    isEdit: false
-  }
-  // console.log('222',todoList.updateTodoList.todoList);
-  await fetch('http://localhost:3000/todo', {
-    method: 'POST', 
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(todoList),
-  })
-  // alert('Success')
-  
-}

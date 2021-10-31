@@ -11,13 +11,6 @@
       "id": 17,
       "description": "111",
       "isInFavorite": true,
-      "isCompleted": true,
-      "isEdit": false
-    },
-    {
-      "id": 18,
-      "description": "22",
-      "isInFavorite": false,
       "isCompleted": false,
       "isEdit": false
     },
@@ -25,33 +18,40 @@
       "id": 20,
       "description": "55",
       "isInFavorite": true,
-      "isCompleted": false,
+      "isCompleted": true,
       "isEdit": false
     },
     {
       "id": 21,
       "description": "2",
       "isInFavorite": false,
-      "isCompleted": false,
+      "isCompleted": true,
       "isEdit": false
     },
     {
       "id": 24,
       "description": "44",
-      "isInFavorite": false,
+      "isInFavorite": true,
       "isCompleted": false,
       "isEdit": false
     },
     {
       "id": 25,
       "description": "11222",
-      "isInFavorite": false,
+      "isInFavorite": true,
       "isCompleted": false,
       "isEdit": false
     },
     {
       "id": 26,
-      "description": "222222222222222222222222222222222222222222222222",
+      "description": "22",
+      "isInFavorite": false,
+      "isCompleted": false,
+      "isEdit": false
+    },
+    {
+      "id": 27,
+      "description": "22",
       "isInFavorite": false,
       "isCompleted": false,
       "isEdit": false
