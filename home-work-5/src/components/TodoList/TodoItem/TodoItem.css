@@ -9,6 +9,12 @@
   overflow-wrap: anywhere;
 }
 
+.item-img__container {
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
 .img-favorite,
 .img-complete {
   width: 12px;
@@ -21,6 +27,7 @@
 }
 
 .todo-button_item {
+  margin-left: 2px;
   width: 24px;
   background: white;
   display: flex;
@@ -29,4 +36,13 @@
   border: none;
   cursor: pointer;
   padding-left: 4px;
+}
+
+.todo-edit__container {
+  width: 79%;
+  padding-bottom: 5px;
+}
+
+.todo-edit-input {
+  width: 95%;
 }

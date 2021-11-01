@@ -16,9 +16,10 @@ type ITodoItemProps = {
   isCompleted: boolean,
   isInFavorite: boolean,
   isEdit: string,
+  creationDate: string,
 }
 
-const TodoItem: FC<ITodoItemProps> = ({todoList, id, description, isCompleted, isInFavorite, isEdit}) => {
+const TodoItem: FC<ITodoItemProps> = ({todoList, id, description, creationDate, isCompleted, isInFavorite, isEdit}) => {
   const [newDescription, setNewDescription] = useState(description);
   const [inputError, setInputError] = useState<string | boolean>('');
   const [hideModalMenu, setHideModalMenu] = useState(true);
@@ -83,13 +84,19 @@ const TodoItem: FC<ITodoItemProps> = ({todoList, id, description, isCompleted, i
 
   return (
     <li  className="todo-item">
+      <div className="item-img__container">
       {isCompleted &&  
       <img onClick={()=>toComplete(id)} className="img-complete" src="/icons/completed.ico" alt="Comleted" 
       />}
-
+       {isInFavorite && 
+      <img onClick={()=>toFavorite(id)} className="img-favorite" src="/icons/star.ico" alt="In favorite" 
+      />}
+      </div>
+      
       {isEdit 
-        ? <div>
-            <input 
+        ? <div className="todo-edit__container">
+            <input
+            className="todo-edit-input"
             autoFocus
             onBlur={() => dispatch(isEditListItem(id))}
             onKeyDown={onEditKeyDown} 
@@ -102,10 +109,6 @@ const TodoItem: FC<ITodoItemProps> = ({todoList, id, description, isCompleted, i
         : <p>{description}</p>
       }
 
-      {isInFavorite && 
-      <img onClick={()=>toFavorite(id)} className="img-favorite" src="/icons/star.ico" alt="In favorite" 
-      />}
-      
       <TodoItemButton toggleModalMenu={toggleModalMenu}/> 
       <ModalMenuTodo hideModalMenu={hideModalMenu} toggleModalMenu={toggleModalMenu}>
         <TodoItemMenu
@@ -123,6 +126,7 @@ const TodoItem: FC<ITodoItemProps> = ({todoList, id, description, isCompleted, i
           hideModalRemove={hideModalRemove} 
           toggleModalRemove={toggleModalRemove}
           removeItem={()=>removeItem(id)}
+          creationDate={creationDate}
           />
     </li>
   )

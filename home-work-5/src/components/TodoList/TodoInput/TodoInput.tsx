@@ -1,6 +1,6 @@
 import './TodoInput.css';
 import React, {ChangeEvent, FC, useEffect, useState} from 'react';
-import { IlistItem } from '../../../types/todoListIt2';
+import { IlistItem } from '../../../types/todoListItTypes';
 
 interface ITodolistProps {
   addListItem(item:IlistItem): void;
@@ -12,6 +12,7 @@ const initialState:IlistItem = {
     isInFavorite: false,
     isCompleted: false,
     isEdit: false,
+    creationDate: ''
 };
 
 const TodoInput: FC<ITodolistProps> = ({addListItem}) => {

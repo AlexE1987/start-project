@@ -1,4 +1,4 @@
-import { ITodoListActions, TodoListTypes } from '../../types/todoListIt2';
+import { ITodoListActions, TodoListTypes } from '../../types/todoListItTypes';
 export interface todoListState {
   todoList: any[], //! ANY
   todoListDefault: any[], //! ANY

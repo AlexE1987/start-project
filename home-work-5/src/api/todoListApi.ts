@@ -1,4 +1,4 @@
-import { IlistItem } from "../types/todoListIt2"
+import { IlistItem } from "../types/todoListItTypes"
 
 export const putData = async (id:number, data: IlistItem ) => {
 

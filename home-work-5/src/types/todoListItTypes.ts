@@ -3,7 +3,8 @@ export interface IlistItem {
   description: string,
   isInFavorite: boolean,
   isCompleted: boolean,
-  isEdit: boolean
+  isEdit: boolean,
+  creationDate: string,
 };
 
 export enum TodoListTypes {

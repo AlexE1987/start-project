@@ -1,5 +1,5 @@
 import { Dispatch } from "redux"
-import { IlistItem, TodoListTypes, ITodoListActions } from "../../types/todoListIt2";
+import { IlistItem, TodoListTypes, ITodoListActions } from "../../types/todoListItTypes";
 
 export const  fetchTodoList = () => { //! TRY/CATCH
   return async (dispatch: Dispatch<ITodoListActions>) => {

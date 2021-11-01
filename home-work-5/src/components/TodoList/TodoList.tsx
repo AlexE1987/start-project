@@ -2,7 +2,7 @@ import './TodoList.css';
 import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { IlistItem } from '../../types/todoListIt2';
+import { IlistItem } from '../../types/todoListItTypes';
 import { addListItem, fetchTodoList, filterShowAll,
          filterShowCompleted, filterShowFavorite,
          filterShowUncompleted } from '../../redux/actions/todoListActions';
@@ -22,8 +22,12 @@ const TodoList: FC = () => {
   },[dispatch]);
 
   const onAddListItem = async (listItem: IlistItem) => {
-    const newId = Math.max(...todoList.map((todoItem) => todoItem.id)) + 1;
-    listItem.id = newId;
+    if(Boolean(todoList)) {
+      listItem.id = 1
+    } else {
+      listItem.id = Math.max(...todoList.map((todoItem) => todoItem.id)) + 1;
+    };
+    listItem.creationDate = new Date().toLocaleDateString();
     dispatch(addListItem(listItem));
     postData(listItem)
   };
@@ -68,6 +72,7 @@ const TodoList: FC = () => {
             isCompleted={listItem.isCompleted}         
             isInFavorite={listItem.isInFavorite}
             isEdit={listItem.isEdit}
+            creationDate={listItem.creationDate}
             />)}
           </ul>
       </div>
