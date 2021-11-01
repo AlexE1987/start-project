@@ -3,7 +3,9 @@ import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { IlistItem } from '../../types/todoListIt2';
-import { addListItem, fetchTodoList } from '../../redux/actions/todoListActions';
+import { addListItem, fetchTodoList, filterShowAll,
+         filterShowCompleted, filterShowFavorite,
+         filterShowUncompleted } from '../../redux/actions/todoListActions';
 import { postData } from '../../api/todoListApi';
 
 import TodoItem from './TodoItem/TodoItem';
@@ -11,15 +13,9 @@ import TodoInput from './TodoInput/TodoInput';
 import TodoFilter from './TodoFilter/TodoFilter';
 
 const TodoList: FC = () => {
-  const todoListInit = useTypedSelector((store) => store.updateTodoList.todoList);
-  const [todoList, setTodoList] = useState<any []>([]);
-  const [filter, setFilter] = useState('');
+  const [activeFilter, setActiveFilter] = useState('');
+  const todoList = useTypedSelector((store) => store.updateTodoList.todoList);
   const dispatch = useDispatch();
-
-  useEffect(()=>  {
-    setTodoList(todoListInit);
-  },[todoListInit]);
-
 
   useEffect(()=> {
     dispatch(fetchTodoList());
@@ -32,33 +28,33 @@ const TodoList: FC = () => {
     postData(listItem)
   };
 
+  const filterAll = () => {
+    dispatch(filterShowAll())
+    setActiveFilter('All')
+  };
   const filterCompleted = () => {
-    const forCompletedTodo = [...todoListInit];
-    const completedTodo = forCompletedTodo.filter((item) => item.isCompleted === true);
-    setTodoList(completedTodo);
-    setFilter('Completed');
+    dispatch(filterShowCompleted())
+    setActiveFilter('Completed')
   };
 
   const filterUncompleted = () => {
-    const forUncompletedTodo = [...todoListInit];
-    const uncompletedTodo = forUncompletedTodo.filter((item) => item.isCompleted === false);
-    setTodoList(uncompletedTodo);
-    setFilter('Uncompleted');
+    dispatch(filterShowUncompleted())
+    setActiveFilter('Uncompleted')
   };
 
   const filterFavorite = () => {
-    const forFavoriteTodo = [...todoListInit];
-    const favoriteTodo = forFavoriteTodo.filter((item) => item.isInFavorite === true);
-    setTodoList(favoriteTodo);
-    setFilter('Favorite');
+    dispatch(filterShowFavorite())
+    setActiveFilter('Favorite')
   };
-
+  
   return (
     <div className="todo-list__wrapper">
       <div className="todo-list__container">
         <h3>My Todo List</h3>
         <TodoInput addListItem={onAddListItem}/>
         <TodoFilter 
+          activeFilter={activeFilter}
+          filterAll={filterAll}
           filterCompleted={filterCompleted}
           filterUncompleted={filterUncompleted} 
           filterFavorite={filterFavorite}/>

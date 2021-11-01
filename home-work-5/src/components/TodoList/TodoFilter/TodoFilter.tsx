@@ -2,20 +2,31 @@ import './TodoFilter.css';
 import React, {FC} from 'react'
 
 interface ITodoFilter {
+  activeFilter: string,
+  filterAll: () => void,
   filterCompleted: () => void,
   filterUncompleted: () => void,
   filterFavorite: () => void,
 }
 
-const TodoFilter:FC<ITodoFilter> = ({filterCompleted, filterUncompleted, filterFavorite}) => {
+const TodoFilter:FC<ITodoFilter> = ({activeFilter, filterAll, filterCompleted, filterUncompleted, filterFavorite}) => {
 
   return (
     <div className="todo-filter__wrapper">
       <h4>Filtered by</h4>
       <div className="todo-btn-filter__container">
-        <button onClick={filterCompleted} className="todo-filter-btn">comp/comp+fav</button>
-        <button onClick={filterUncompleted} className="todo-filter-btn">Unc/Unc+favo</button>
-        <button onClick={filterFavorite} className="todo-filter-btn">Fav+Unc</button>
+        <button 
+        onClick={filterCompleted} 
+        className={activeFilter === 'Completed' ? "todo-filter-btn active" : "todo-filter-btn"}>Completed</button>
+        <button 
+        onClick={filterUncompleted} 
+        className={activeFilter === 'Uncompleted' ? "todo-filter-btn active" : "todo-filter-btn"}>Uncompleted</button>
+        <button 
+        onClick={filterFavorite} 
+        className={activeFilter === 'Favorite' ? "todo-filter-btn active" : "todo-filter-btn"}>Favorite</button>
+        <button 
+        onClick={filterAll} 
+        className="todo-filter-btn">All</button>
       </div>
     </div>
   )

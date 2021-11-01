@@ -34,36 +34,15 @@ export const updateDescriptionListItem = (newArray: any[] ):ITodoListActions => 
   type: TodoListTypes.UPDATE_DESCRIPTION_LIST_ITEM, payload: newArray 
 });
 
-//! TEST need to refresh all data
-export const testSave = async (list:any) => {
-  
-  const response = await fetch('http://localhost:3000/todo', {
-    method: 'POST', // or 'PUT'
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(list),
-  })
-  console.log('hI');
-  
-}
-
-
-
-// export const fetchTodoList = () => {
-//   return async (dispatch: Dispatch<ITodoListActions>) => {
-//     try {
-//       dispatch({type: TodoListActionTypes.GET_TODO_LIST});
-//       const response = await fetch('http://localhost:3000/todo')
-//       .then((response) => response.json())
-//       .then((data) => {
-//       return data
-//       })
-//       dispatch({type: TodoListActionTypes.GET_TODO_LIST_SUCCESS, payload: response})
-//     } catch (error) {
-//       dispatch({type: TodoListActionTypes.GET_TODO_LIST_ERROR, payload: 'Error while downloading'});
-//     }
-//   }
-// }
-
-// export type Action = {type: 'ADD_LIST_ITEM', payload: IlistItem}
+export const filterShowAll = ():ITodoListActions => ({
+  type: TodoListTypes.SHOW_TODO_LIST_All
+});
+export const filterShowCompleted = ():ITodoListActions => ({
+  type: TodoListTypes.SHOW_TODO_LIST_COMPLETED
+});
+export const filterShowUncompleted = ():ITodoListActions => ({
+  type: TodoListTypes.SHOW_TODO_LIST_UNCOMPLETED
+});
+export const filterShowFavorite = ():ITodoListActions => ({
+  type: TodoListTypes.SHOW_TODO_LIST_FAVORITE
+});

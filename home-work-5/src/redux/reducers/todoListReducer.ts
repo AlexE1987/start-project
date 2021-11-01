@@ -1,22 +1,46 @@
 import { ITodoListActions, TodoListTypes } from '../../types/todoListIt2';
 export interface todoListState {
   todoList: any[], //! ANY
+  todoListDefault: any[], //! ANY
 };
 
 const initialState:todoListState = {
   todoList: [],
+  todoListDefault: [],
 };
 
 export const todoListUpdateReducer = (state:todoListState = initialState, action: ITodoListActions) => {
   switch(action.type) {
     case TodoListTypes.FETCH_TODO_LIST:      
-    return {
-        ...state, todoList: [...action.payload, ...state.todoList]
+      return {
+        ...state, todoList: [...action.payload, ...state.todoList].sort((a, b) => b.id - a.id)
+                ,todoListDefault: [...action.payload, ...state.todoList].sort((a, b) => b.id - a.id)
       };
 
+    case TodoListTypes.SHOW_TODO_LIST_All:      
+      return {
+      ...state, todoList: [...state.todoListDefault]
+      };
+
+    case TodoListTypes.SHOW_TODO_LIST_COMPLETED:      
+      return {
+        ...state, todoList: [...state.todoListDefault].filter((item) => item.isCompleted === true)
+      };
+
+    case TodoListTypes.SHOW_TODO_LIST_UNCOMPLETED:      
+      return {
+        ...state, todoList: [...state.todoListDefault].filter((item) => item.isCompleted === false)
+      };
+
+    case TodoListTypes.SHOW_TODO_LIST_FAVORITE:
+      return {
+        ...state, todoList: [...state.todoListDefault]
+                        .filter((item) => item.isInFavorite === true && item.isCompleted === false)
+      };
+    
     case TodoListTypes.ADD_LIST_ITEM:
       return {
-        ...state, todoList: [...state.todoList, action.payload]
+        ...state, todoList: [action.payload, ...state.todoList]
       };
 
     case TodoListTypes.REMOVE_LIST_ITEM:

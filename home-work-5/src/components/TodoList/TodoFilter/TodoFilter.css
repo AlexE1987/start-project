@@ -3,7 +3,25 @@
 }
 
 .todo-btn-filter__container {
+  display: flex;
 }
 
 .todo-filter-btn {
+  background: none;
+  border: 1px solid #5b3e96;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #5b3e96;
+  cursor: pointer;
+  margin: 0 2px;
+  height: 18px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.todo-filter-btn.active {
+  background-color: #5b3e96;
+  color: #fff;
 }
