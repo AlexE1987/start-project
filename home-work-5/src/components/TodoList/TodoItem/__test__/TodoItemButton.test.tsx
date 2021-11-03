@@ -1,5 +1,5 @@
 import TodoItemButton from '../TodoItemButton';
-import Enzyme, { shallow, mount } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -30,10 +30,9 @@ describe('should render TodoItemButton component', () => {
   });
 
   it('component should launch todoItemMenu', () => {
-    wrapper.find('button');
-    wrapper.simulate('click');
+    wrapper.find('button').simulate('click');
     expect(props.toggleModalMenu).toBeCalled();
-  })
+  });
 })
 
 
