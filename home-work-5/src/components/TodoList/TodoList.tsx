@@ -22,7 +22,7 @@ const TodoList: FC = () => {
   },[dispatch]);
 
   const onAddListItem = async (listItem: IlistItem) => {
-    if(Boolean(todoList)) {
+    if(todoList.length === 0) {
       listItem.id = 1
     } else {
       listItem.id = Math.max(...todoList.map((todoItem) => todoItem.id)) + 1;
