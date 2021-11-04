@@ -64,7 +64,6 @@ describe('TodoFilter Component', () => {
   it('Filter btns should not be active', () => {
     wrapper.setProps({activeFilter: ''});
     expect(wrapper.exists('.active')).toBe(false);
-    console.log(wrapper.debug());
   });
 
 });

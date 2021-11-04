@@ -1,4 +1,4 @@
-import './TodoItem.css';
+import '../TodoItem.css';
 import React, {FC} from 'react';
 
 interface ITodoItemButtonProps {

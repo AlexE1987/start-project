@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { inFavoriteListItem, isComletedListItem, isEditListItem, removeListItem, updateDescriptionListItem } from '../../../redux/actions/todoListActions';
 import { deleteData, putData } from '../../../api/todoListApi';
 import { dataToSend } from '../../../helpers/todoListHelpers';
-import TodoItemButton from './TodoItemButton';
+import TodoItemButton from './TodoItemButton/TodoItemButton';
 import TodoItemMenu from '../TodoItemMenu/TodoItemMenu';
 import ModalMenuTodo from '../../Modal/ModalMenuTodo/ModalMenuTodo';
 import ModalRemove from '../../Modal/ModalRemove/ModalRemove';

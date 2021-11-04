@@ -10,7 +10,6 @@ interface IModalMenuTodoProps {
 
 const ModalMenuTodo:FC<IModalMenuTodoProps> = ({ hideModalMenu, toggleModalMenu, children}) => {
   return createPortal(
-
      <div className={hideModalMenu ? 'hide' : ''} >
         <div className="modal__wrapper" onClick={toggleModalMenu}>
           <div className="modal__container" onClick={(e) => e.stopPropagation()}>

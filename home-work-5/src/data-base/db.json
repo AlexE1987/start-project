@@ -35,8 +35,8 @@
     {
       "id": 5,
       "description": "33",
-      "isInFavorite": false,
-      "isCompleted": false,
+      "isInFavorite": true,
+      "isCompleted": true,
       "isEdit": false,
       "creationDate": "11/3/2021"
     }
