@@ -6,9 +6,9 @@ Enzyme.configure({ adapter: new Adapter() });
 const props = {
   id: 0,
   hideModalMenu: true,
-  toComplete:  jest.fn(),
-  toFavorite:  jest.fn(),
-  toEdit:  jest.fn(),
+  toComplete: jest.fn(),
+  toFavorite: jest.fn(),
+  toEdit: jest.fn(),
   toggleModalRemove: jest.fn(),
 };
 
