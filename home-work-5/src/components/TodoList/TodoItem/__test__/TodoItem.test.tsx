@@ -1,9 +1,8 @@
 import TodoItem from '../TodoItem';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, { mount, shallow, render } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { Provider } from "react-redux";
 import configureStore from 'redux-mock-store';
-import ReactDOM from 'react-dom';
 Enzyme.configure({ adapter: new Adapter() });
 
 const props = {
@@ -18,27 +17,33 @@ const props = {
 
 const mockStore = configureStore();
 const store = mockStore();
-
 // jest.mock('react-redux', () => ({
 //   useDispatch: () => {},
 //   useSelector: () => ([]),
 // }));
 
-describe('My Footer Component', () => {
+describe('TodoItem Component', () => {
 
-  let wrapper = mount(<Provider store={store}><TodoItem {...props} /></Provider>);
 
+  let wrapper = shallow(<Provider store={store}><TodoItem {...props} /></Provider>);
   beforeEach(() => {
-    wrapper = mount(<Provider store={store}><TodoItem {...props} /></Provider>);
+    wrapper = shallow(<Provider store={store}><TodoItem {...props} /></Provider>);
+  })
+  // let wrapper = mount(<Provider store={store}><TodoItem {...props} /></Provider>);
+  // beforeEach(() => {
+  //   wrapper = mount(<Provider store={store}><TodoItem {...props} /></Provider>);
+  // });
+  
+  // afterEach(() => {
+  //   wrapper.unmount();
+  // });
+  
+  describe('TodoItem completed', () => {
+    it('TodoItem should display ico complete', () => {
+      wrapper.setProps({isCompleted: true});
+      expect(wrapper.find('.img-complete').length).toBe(1);
+      console.log(wrapper.debug());
+    });
   });
-  
-  afterEach(() => {
-    wrapper.unmount();
-  })
-  
-
-  it('test', () => {
-    expect(wrapper.length).toBe(1);
-  })
 
 });
